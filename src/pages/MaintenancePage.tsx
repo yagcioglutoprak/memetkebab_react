@@ -43,10 +43,7 @@ export default function MaintenancePage() {
           />
 
           {/* Maintenance Message */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
+          <div
             className="bg-white/90 backdrop-blur-sm p-8 rounded-xl border border-gray-200 max-w-2xl mx-auto
                      shadow-[0_0_15px_rgba(32,12,0,0.1),0_0_30px_rgba(32,12,0,0.1)] 
                      hover:shadow-[0_0_20px_rgba(32,12,0,0.15),0_0_40px_rgba(32,12,0,0.15)] 
@@ -68,21 +65,20 @@ export default function MaintenancePage() {
             >
               {t('maintenance.message') || 'Our website and app are currently being updated to serve you better. We\'ll be back soon!'}
             </motion.p>
-            <motion.div 
+            <div 
               className="flex justify-center gap-6"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.3, duration: 0.5 }}
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-lg shadow-md"
+              <div
+                className="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-lg shadow-md hover:scale-105 transition-transform"
               >
                 <div className="w-3 h-3 bg-[rgba(213,17,42,255)] rounded-full animate-pulse" />
                 <span>{t('maintenance.status') || 'In Progress'}</span>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>
