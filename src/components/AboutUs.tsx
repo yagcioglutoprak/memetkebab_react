@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Timer, Heart } from 'lucide-react';
+import { Star, Timer, Heart, ArrowRight } from 'lucide-react';
 import Section from './Section';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function AboutUs() {
   const { t } = useLanguage();
   const [hasAnimated, setHasAnimated] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setHasAnimated(true);
@@ -41,6 +43,16 @@ export default function AboutUs() {
               >
                 {t('about.text2')}
               </motion.p>
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.3 }}
+                onClick={() => navigate('/about')}
+                className="mt-6 px-6 py-3 bg-[rgba(213,17,42,255)] text-white rounded-lg hover:bg-[rgba(193,15,38,255)] transition-colors flex items-center gap-2"
+              >
+                {t('about.learnMore')}
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
               <div className="grid grid-cols-3 gap-6 mt-12">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 interface PromoCardProps {
   title: string;
@@ -13,6 +14,7 @@ interface PromoCardProps {
 
 export default function PromoCard({ title, description, image, onClick, index = 0 }: PromoCardProps) {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -38,12 +40,20 @@ export default function PromoCard({ title, description, image, onClick, index = 
       <div className="relative p-6">
         <h3 className="text-xl font-bold mb-2 text-white">{title}</h3>
         <p className="text-white/90 mb-4 text-sm">{description}</p>
-        <motion.div 
-          className="inline-flex items-center gap-2 text-white font-medium text-sm group-hover:text-white"
-          whileHover={{ x: 5 }}
-        >
-          {t('menu.viewDetails')} <ArrowRight className="w-4 h-4" />
-        </motion.div>
+        <div className="flex justify-between items-center">
+          <button
+            onClick={() => navigate('/menu')}
+            className="bg-[rgba(213,17,42,255)] text-white px-6 py-2 rounded-full hover:bg-[rgba(193,15,38,255)] transition"
+          >
+            Order Now
+          </button>
+          <motion.div 
+            className="inline-flex items-center gap-2 text-white font-medium text-sm group-hover:text-white"
+            whileHover={{ x: 5 }}
+          >
+            {t('menu.viewDetails')} <ArrowRight className="w-4 h-4" />
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   );

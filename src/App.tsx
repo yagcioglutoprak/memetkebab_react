@@ -14,6 +14,9 @@ import Locations from './pages/Locations';
 import MenuPage from './pages/MenuPage';
 import MaintenancePage from './pages/MaintenancePage';
 import CareersPage from './pages/CareersPage';
+import AboutUsPage from './pages/AboutUsPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import logo from './theme/memet-kebab-white-bcg-rgb.png';
 
 function Home({ onOrderClick }: { onOrderClick: () => void }) {
@@ -262,9 +265,11 @@ function ScrollToTop() {
 
 function App() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  
+  const handleOrderClick = () => {
+    navigate('/menu');
   };
 
   useEffect(() => {
@@ -280,43 +285,46 @@ function App() {
   return (
     <div className="min-h-screen bg-white text-[rgba(32,12,0,255)]">
       <ScrollToTop />
-      <Header onOrderClick={scrollToContact} />
+      <Header onOrderClick={handleOrderClick} />
       <Routes>
-        <Route path="/" element={<Home onOrderClick={scrollToContact} />} />
+        <Route path="/" element={<Home onOrderClick={handleOrderClick} />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/careers" element={<CareersPage />} />
+        <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
       </Routes>
       
       {/* Footer */}
       <footer className="bg-gray-50 py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
+          <div className="grid md:grid-cols-5 gap-8">
+            <div className="md:col-span-2">
               <img src={logo} alt="Memet Kebab" className="w-32 mb-4" />
               <p className="text-[rgba(32,12,0,0.7)]">{t('footer.description')}</p>
             </div>
             <div>
               <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.quickLinks')}</h3>
               <ul className="space-y-2">
-                <li><a href="#menu" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.menu')}</a></li>
-                <li><a href="#about" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.about')}</a></li>
-                <li><a href="#contact" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.contact')}</a></li>
-                <li><a href="#careers" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.careers')}</a></li>
+                <li><button onClick={() => navigate('/menu')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.menu')}</button></li>
+                <li><button onClick={() => navigate('/locations')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.locations')}</button></li>
+                <li><button onClick={() => navigate('/about')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.about')}</button></li>
+                <li><button onClick={() => navigate('/careers')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.careers')}</button></li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.contact')}</h3>
               <ul className="space-y-2">
-                <li className="text-[rgba(32,12,0,0.7)]">123 Kebab Street</li>
-                <li className="text-[rgba(32,12,0,0.7)]">Istanbul, Turkey</li>
-                <li className="text-[rgba(32,12,0,0.7)]">+1 (555) 123-4567</li>
-                <li className="text-[rgba(32,12,0,0.7)]">info@memetkebab.com</li>
+                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.address')}</li>
+                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.city')}</li>
+                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.phone')}</li>
+                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.email')}</li>
               </ul>
             </div>
             <div>
               <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.followUs')}</h3>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 mb-6">
                 <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
                   <Facebook className="w-6 h-6" />
                 </a>
@@ -326,6 +334,10 @@ function App() {
                 <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
                   <Instagram className="w-6 h-6" />
                 </a>
+              </div>
+              <div className="space-y-2">
+                <button onClick={() => navigate('/privacy-policy')} className="block text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.privacyPolicy')}</button>
+                <button onClick={() => navigate('/terms-of-service')} className="block text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.termsOfService')}</button>
               </div>
             </div>
           </div>
