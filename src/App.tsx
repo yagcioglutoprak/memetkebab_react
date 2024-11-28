@@ -18,6 +18,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import logo from './theme/memet-kebab-white-bcg-rgb.png';
+import SEOMetaTags from './components/SEOMetaTags';
 
 function Home({ onOrderClick }: { onOrderClick: () => void }) {
   const { t } = useLanguage();
@@ -284,6 +285,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white text-[rgba(32,12,0,255)]">
+      <SEOMetaTags />
       <ScrollToTop />
       <Header onOrderClick={handleOrderClick} />
       <Routes>

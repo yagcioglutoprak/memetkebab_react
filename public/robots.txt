@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://memetkebab.pl/sitemap.xml
+
+# Disallow admin and private routes
+Disallow: /admin/
+Disallow: /private/
