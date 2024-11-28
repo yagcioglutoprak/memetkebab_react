@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import { useState, useEffect } from 'react';
+import logo from '../theme/memet-kebab-white-bcg-rgb.png';
 
 export default function MaintenancePage() {
   const { t } = useLanguage();
@@ -14,7 +15,7 @@ export default function MaintenancePage() {
   // Preload the image
   useEffect(() => {
     const img = new Image();
-    img.src = "/src/theme/memet-kebab-white-bcg-rgb.png";
+    img.src = logo;
     img.onload = () => setImageLoaded(true);
   }, []);
 
@@ -44,7 +45,7 @@ export default function MaintenancePage() {
           {/* Logo */}
           <div className="relative w-64 mb-12">
             <motion.img
-              src="/src/theme/memet-kebab-white-bcg-rgb.png"
+              src={logo}
               alt="Memet Kebab"
               className="w-64 mx-auto"
               initial={false}
