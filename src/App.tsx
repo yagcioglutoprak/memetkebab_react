@@ -292,7 +292,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <img src="https://i.ibb.co/gmLc3MQ/memet-kebab-white-bcg-rgb.png" alt="Memet Kebab" className="w-32 mb-4" />
+              <img src="/src/theme/memet-kebab-white-bcg-rgb.png" alt="Memet Kebab" className="w-32 mb-4" />
               <p className="text-[rgba(32,12,0,0.7)]">{t('footer.description')}</p>
             </div>
             <div>
