@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Search, Filter, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -97,6 +97,11 @@ export default function MenuPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    setHasAnimated(true);
+  }, []);
 
   const filteredItems = menuItems.flatMap(category => category.items).filter(item => {
     const matchesSearch = t(item.title).toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -107,14 +112,14 @@ export default function MenuPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-950 pt-24">
+    <div className="min-h-screen bg-white pt-24">
       <div className="container mx-auto px-4 pb-12">
         {/* Back button */}
         <motion.button
           onClick={() => navigate(-1)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mb-8 flex items-center gap-2 text-gray-400 hover:text-white transition-colors relative z-10"
+          className="mb-8 flex items-center gap-2 text-[rgba(32,12,0,0.7)] hover:text-[rgba(32,12,0,255)] transition-colors relative z-10"
         >
           <ArrowLeft className="w-5 h-5" />
           {t('menu.back')}
@@ -123,23 +128,23 @@ export default function MenuPage() {
         {/* Title and Search Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4">{t('menu.title')}</h1>
-          <p className="text-gray-400 max-w-2xl mx-auto mb-8">
+          <h1 className="text-4xl font-bold mb-4 text-[rgba(32,12,0,255)]">{t('menu.title')}</h1>
+          <p className="text-[rgba(32,12,0,0.7)] max-w-2xl mx-auto mb-8">
             {t('menu.subtitle')}
           </p>
 
           {/* Search Bar */}
           <div className="relative w-full max-w-md mx-auto mb-8">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[rgba(32,12,0,0.7)]" />
             <input
               type="text"
               placeholder={t('menu.search')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-gray-800 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-red-600"
+              className="w-full pl-10 pr-4 py-2 bg-[rgba(32,12,0,0.1)] rounded-full text-[rgba(32,12,0,255)] focus:outline-none focus:ring-2 focus:ring-[rgba(213,17,42,255)]"
             />
           </div>
 
@@ -151,8 +156,8 @@ export default function MenuPage() {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-4 py-2 rounded-full text-sm transition-colors ${
                   selectedCategory === category.id
-                    ? 'bg-red-600 text-white'
-                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                    ? 'bg-[rgba(213,17,42,255)] text-white'
+                    : 'bg-[rgba(32,12,0,0.1)] text-[rgba(32,12,0,0.7)] hover:bg-[rgba(32,12,0,0.2)]'
                 }`}
               >
                 {t(category.label)}
@@ -167,9 +172,10 @@ export default function MenuPage() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="relative overflow-hidden rounded-xl bg-gray-900/90 backdrop-blur-sm border border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              className="relative overflow-hidden rounded-xl bg-white backdrop-blur-sm border border-[rgba(32,12,0,0.1)] shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedProduct(item)}
             >
               <div className="aspect-w-16 aspect-h-9">
@@ -180,36 +186,38 @@ export default function MenuPage() {
                 />
               </div>
               {item.isPromo && (
-                <div className="absolute top-4 right-4 bg-red-600 px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-4 right-4 bg-[rgba(213,17,42,255)] text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
                   {t('menu.specialOffer')}
                 </div>
               )}
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="text-xl font-bold mb-2">{t(item.title)}</h3>
+                    <h3 className="text-xl font-bold mb-2 text-[rgba(32,12,0,255)]">{t(item.title)}</h3>
                     {item.rating && (
-                      <div className="flex items-center gap-2 text-gray-400">
-                        <Star className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                      <div className="flex items-center gap-2 text-[rgba(32,12,0,0.7)]">
+                        <Star className="w-4 h-4 fill-[rgba(213,17,42,255)] text-[rgba(213,17,42,255)]" />
                         <span>{item.rating}</span>
                         <span>({item.reviews} {t('menu.reviews')})</span>
                       </div>
                     )}
                   </div>
-                  <span className="text-red-600 font-bold">{item.price}</span>
+                  <span className="text-[rgba(213,17,42,255)] font-bold">{item.price}</span>
                 </div>
-                <p className="text-gray-400">{t(item.description)}</p>
+                <p className="text-[rgba(32,12,0,0.7)]">{t(item.description)}</p>
               </div>
             </motion.div>
           ))}
         </div>
+      </div>
 
-        {/* Product Modal */}
+      {/* Product Modal */}
+      {selectedProduct && (
         <ProductModal
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
         />
-      </div>
+      )}
     </div>
   );
 }

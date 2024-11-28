@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Heart, Users } from 'lucide-react';
 import Section from './Section';
 import RecruitmentForm from './RecruitmentForm';
+import { COLORS } from '../constants/colors';
 
 export default function Careers({ t }: { t: (key: string) => string }) {
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    setHasAnimated(true);
+  }, []);
+
   return (
     <div className="relative">
       {/* Background Image with Overlay */}
@@ -23,16 +30,16 @@ export default function Careers({ t }: { t: (key: string) => string }) {
           <div className="max-w-3xl mx-auto text-center mb-16">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl font-bold mb-6"
+              animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              className="text-4xl font-bold mb-6 text-white"
             >
               {t('careers.title')}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-gray-300"
+              className="text-xl text-white/80"
             >
               {t('careers.description')}
             </motion.p>
@@ -41,45 +48,39 @@ export default function Careers({ t }: { t: (key: string) => string }) {
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-center p-8 bg-gray-950/60 backdrop-blur-sm rounded-xl border border-gray-800 shadow-lg"
+              animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.3 }}
+              className="text-center p-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg"
             >
-              <GraduationCap className="w-12 h-12 text-red-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">{t('careers.training.title')}</h3>
-              <p className="text-gray-300">{t('careers.training.description')}</p>
+              <GraduationCap className="w-12 h-12 mx-auto mb-4 text-[rgba(213,17,42,255)]" />
+              <h3 className="text-xl font-bold mb-2 text-white">{t('careers.training.title')}</h3>
+              <p className="text-white/80">{t('careers.training.description')}</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-center p-8 bg-gray-950/60 backdrop-blur-sm rounded-xl border border-gray-800 shadow-lg"
+              animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.4 }}
+              className="text-center p-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg"
             >
-              <Heart className="w-12 h-12 text-red-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">{t('careers.benefits.title')}</h3>
-              <p className="text-gray-300">{t('careers.benefits.description')}</p>
+              <Heart className="w-12 h-12 mx-auto mb-4 text-[rgba(213,17,42,255)]" />
+              <h3 className="text-xl font-bold mb-2 text-white">{t('careers.benefits.title')}</h3>
+              <p className="text-white/80">{t('careers.benefits.description')}</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-center p-8 bg-gray-950/60 backdrop-blur-sm rounded-xl border border-gray-800 shadow-lg"
+              animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.5 }}
+              className="text-center p-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg"
             >
-              <Users className="w-12 h-12 text-red-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">{t('careers.team.title')}</h3>
-              <p className="text-gray-300">{t('careers.team.description')}</p>
+              <Users className="w-12 h-12 mx-auto mb-4 text-[rgba(213,17,42,255)]" />
+              <h3 className="text-xl font-bold mb-2 text-white">{t('careers.team.title')}</h3>
+              <p className="text-white/80">{t('careers.team.description')}</p>
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="max-w-2xl mx-auto"
-          >
-            <RecruitmentForm t={t} />
-          </motion.div>
+          <RecruitmentForm t={t} />
         </div>
       </Section>
     </div>

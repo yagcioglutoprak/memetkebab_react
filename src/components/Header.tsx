@@ -21,7 +21,7 @@ export default function Header({ onOrderClick }: HeaderProps) {
   const headerBg = useTransform(
     scrollY,
     [0, 100],
-    ['rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 0.95)']
+    ['rgba(249, 250, 251, 0.5)', 'rgba(249, 250, 251, 0.95)']
   );
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function Header({ onOrderClick }: HeaderProps) {
           <button onClick={() => navigate('/menu')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.menu')}</button>
           <button onClick={() => navigate('/locations')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.locations')}</button>
           <button onClick={() => handleNavigation('contact')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.contact')}</button>
-          <button onClick={() => handleNavigation('careers')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.joinUs')}</button>
+          <button onClick={() => navigate('/careers')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.joinUs')}</button>
           <LanguageSwitcher />
           <button 
             onClick={onOrderClick}
@@ -130,7 +130,7 @@ export default function Header({ onOrderClick }: HeaderProps) {
               {t('nav.contact')}
             </motion.button>
             <motion.button 
-              onClick={() => { handleNavigation('careers'); setIsOpen(false); }} 
+              onClick={() => { navigate('/careers'); setIsOpen(false); }} 
               className="w-full text-center py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors text-lg"
               whileTap={{ scale: 0.98 }}
             >

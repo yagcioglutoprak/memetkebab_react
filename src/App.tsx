@@ -9,11 +9,11 @@ import MenuCard from './components/MenuCard';
 import PromoCard from './components/PromoCard';
 import AppPromotion from './components/AppPromotion';
 import AboutUs from './components/AboutUs';
-import Careers from './components/Careers';
 import ProductModal from './components/ProductModal';
 import Locations from './pages/Locations';
 import MenuPage from './pages/MenuPage';
 import MaintenancePage from './pages/MaintenancePage';
+import CareersPage from './pages/CareersPage';
 
 function Home({ onOrderClick }: { onOrderClick: () => void }) {
   const { t } = useLanguage();
@@ -88,14 +88,6 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
 
       {/* Hero Section */}
       <Section className="relative h-screen pt-0">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&q=80"
-            alt="Döner kebab"
-            className="w-full h-full object-cover opacity-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/30" />
-        </div>
         <div className="relative container mx-auto px-4 h-full flex items-center">
           <motion.div 
             initial={{ opacity: 0, x: -100 }}
@@ -111,14 +103,14 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             />
-            <h1 className="text-6xl font-bold mb-6">
+            <h1 className="text-6xl font-bold mb-6 text-[rgba(32,12,0,255)]">
               {t('hero.title')}
-              <span className="text-red-600"> Döner</span>
+              <span className="text-[rgba(213,17,42,255)]"> Döner</span>
             </h1>
-            <p className="text-xl mb-8">{t('hero.subtitle')}</p>
+            <p className="text-xl mb-8 text-[rgba(32,12,0,0.7)]">{t('hero.subtitle')}</p>
             <button 
               onClick={onOrderClick}
-              className="bg-red-600 px-8 py-3 rounded-full text-lg hover:bg-red-700 transition"
+              className="bg-[rgba(213,17,42,255)] text-white px-8 py-3 rounded-full text-lg hover:bg-[rgba(193,15,38,255)] transition"
             >
               {t('hero.orderNow')}
             </button>
@@ -127,13 +119,13 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
       </Section>
 
       {/* Menu Section */}
-      <Section id="menu" className="bg-gray-950">
+      <Section id="menu" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 pt-8">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-4xl font-bold mb-4"
+              className="text-4xl font-bold mb-4 text-[rgba(32,12,0,255)]"
             >
               {t('menu.title')}
             </motion.h2>
@@ -141,7 +133,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-gray-400"
+              className="text-xl text-[rgba(32,12,0,0.7)]"
             >
               {t('menu.subtitle')}
             </motion.p>
@@ -152,9 +144,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
             {menuItems.map((item, index) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                className="relative"
               >
                 <MenuCard
                   title={item.title}
@@ -163,6 +153,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                   image={item.image}
                   isPromo={item.isPromo}
                   onClick={() => setSelectedProduct(item)}
+                  index={index}
                 />
               </motion.div>
             ))}
@@ -173,15 +164,14 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
             {promotions.map((promo, index) => (
               <motion.div
                 key={promo.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                className="relative"
               >
                 <PromoCard
                   title={promo.title}
                   description={promo.description}
                   image={promo.image}
                   onClick={() => setSelectedProduct(promo)}
+                  index={index}
                 />
               </motion.div>
             ))}
@@ -194,7 +184,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
           >
             <button
               onClick={() => navigate('/menu')}
-              className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-[rgba(213,17,42,255)] text-white px-8 py-3 rounded-full hover:bg-[rgba(193,15,38,255)] transition-colors"
             >
               {t('menu.viewFull')} <ArrowRight className="w-5 h-5" />
             </button>
@@ -203,42 +193,39 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
       </Section>
 
       {/* About Us Section */}
-      <Section id="about" className="py-24 bg-gray-950 relative overflow-hidden">
+      <Section id="about" className="py-24 bg-white relative overflow-hidden">
         <AboutUs />
       </Section>
 
       {/* App Promotion Section */}
-      <AppPromotion t={t} className="py-24 bg-gray-950" />
-
-      {/* Careers Section */}
-      <Careers t={t} />
+      <AppPromotion t={t} className="py-24 bg-gray-50" />
 
       {/* Contact Section */}
-      <Section id="contact" className="py-24 bg-gray-950">
+      <Section id="contact" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-4xl font-bold mb-8">{t('contact.title')}</h2>
+              <h2 className="text-4xl font-bold mb-8 text-[rgba(32,12,0,255)]">{t('contact.title')}</h2>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <Phone className="w-6 h-6 text-red-600" />
+                  <Phone className="w-6 h-6 text-[rgba(213,17,42,255)]" />
                   <div>
-                    <h3 className="font-semibold">{t('contact.call')}</h3>
-                    <p className="text-gray-400">+1 (555) 123-4567</p>
+                    <h3 className="font-semibold text-[rgba(32,12,0,255)]">{t('contact.call')}</h3>
+                    <p className="text-[rgba(32,12,0,0.7)]">+1 (555) 123-4567</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <Mail className="w-6 h-6 text-red-600" />
+                  <Mail className="w-6 h-6 text-[rgba(213,17,42,255)]" />
                   <div>
-                    <h3 className="font-semibold">{t('contact.email')}</h3>
-                    <p className="text-gray-400">info@memetkebab.com</p>
+                    <h3 className="font-semibold text-[rgba(32,12,0,255)]">{t('contact.email')}</h3>
+                    <p className="text-[rgba(32,12,0,0.7)]">info@memetkebab.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <MapPinned className="w-6 h-6 text-red-600" />
+                  <MapPinned className="w-6 h-6 text-[rgba(213,17,42,255)]" />
                   <div>
-                    <h3 className="font-semibold">{t('contact.visit')}</h3>
-                    <p className="text-gray-400">123 Kebab Street, Istanbul, Turkey</p>
+                    <h3 className="font-semibold text-[rgba(32,12,0,255)]">{t('contact.visit')}</h3>
+                    <p className="text-[rgba(32,12,0,0.7)]">123 Kebab Street, Istanbul, Turkey</p>
                   </div>
                 </div>
               </div>
@@ -290,34 +277,59 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
+    <div className="min-h-screen bg-white text-[rgba(32,12,0,255)]">
       <ScrollToTop />
       <Header onOrderClick={scrollToContact} />
       <Routes>
         <Route path="/" element={<Home onOrderClick={scrollToContact} />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/menu" element={<MenuPage />} />
+        <Route path="/careers" element={<CareersPage />} />
       </Routes>
       
       {/* Footer */}
-      <footer className="bg-black py-12">
+      <footer className="bg-gray-50 py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-8">
-            <motion.img 
-              src="https://i.ibb.co/gmLc3MQ/memet-kebab-white-bcg-rgb.png" 
-              alt="Memet Kebab" 
-              className="h-24 hover:scale-105 transition-transform duration-300"
-              whileHover={{ rotate: [0, -5, 5, -5, 0] }}
-              transition={{ duration: 0.5 }}
-            />
-            <div className="flex gap-6">
-              <Facebook className="w-6 h-6 hover:text-red-600 cursor-pointer transition" />
-              <Instagram className="w-6 h-6 hover:text-red-600 cursor-pointer transition" />
-              <Twitter className="w-6 h-6 hover:text-red-600 cursor-pointer transition" />
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <img src="https://i.ibb.co/gmLc3MQ/memet-kebab-white-bcg-rgb.png" alt="Memet Kebab" className="w-32 mb-4" />
+              <p className="text-[rgba(32,12,0,0.7)]">{t('footer.description')}</p>
             </div>
-            <div className="text-sm text-gray-400">
-              {t('footer.rights')}
+            <div>
+              <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.quickLinks')}</h3>
+              <ul className="space-y-2">
+                <li><a href="#menu" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.menu')}</a></li>
+                <li><a href="#about" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.about')}</a></li>
+                <li><a href="#contact" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.contact')}</a></li>
+                <li><a href="#careers" className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)]">{t('nav.careers')}</a></li>
+              </ul>
             </div>
+            <div>
+              <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.contact')}</h3>
+              <ul className="space-y-2">
+                <li className="text-[rgba(32,12,0,0.7)]">123 Kebab Street</li>
+                <li className="text-[rgba(32,12,0,0.7)]">Istanbul, Turkey</li>
+                <li className="text-[rgba(32,12,0,0.7)]">+1 (555) 123-4567</li>
+                <li className="text-[rgba(32,12,0,0.7)]">info@memetkebab.com</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.followUs')}</h3>
+              <div className="flex space-x-4">
+                <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
+                  <Twitter className="w-6 h-6" />
+                </a>
+                <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
+                  <Instagram className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-200 mt-8 pt-8 text-center">
+            <p className="text-[rgba(32,12,0,0.7)]">&copy; {new Date().getFullYear()} Memet Kebab. {t('footer.rights')}</p>
           </div>
         </div>
       </footer>
