@@ -16,39 +16,78 @@ const SEOMetaTags: React.FC<MetaTagsProps> = ({
   type = 'website'
 }) => {
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
   
-  const defaultTitle = 'Memet Kebab - Authentic Turkish Cuisine';
-  const defaultDescription = 'Experience authentic Turkish kebabs, grills, and traditional dishes at Memet Kebab. Fresh ingredients, family recipes, and a warm atmosphere await you.';
+  const defaultMetaTags = {
+    pl: {
+      title: 'Memet Kebab - Autentyczna Kuchnia Turecka w Twojej Okolicy',
+      description: 'Odkryj prawdziwe smaki Turcji w Memet Kebab. Świeże składniki, tradycyjne przepisy i wyjątkowa atmosfera. Zamów online lub odwiedź nas już dziś!'
+    },
+    en: {
+      title: 'Memet Kebab - Authentic Turkish Cuisine in Your Neighborhood',
+      description: 'Experience authentic Turkish kebabs, grills, and traditional dishes at Memet Kebab. Fresh ingredients, family recipes, and a warm atmosphere await you.'
+    }
+  };
   
   const metaTags = {
     '/': {
-      title: defaultTitle,
-      description: defaultDescription,
+      pl: {
+        title: defaultMetaTags.pl.title,
+        description: defaultMetaTags.pl.description,
+      },
+      en: {
+        title: defaultMetaTags.en.title,
+        description: defaultMetaTags.en.description,
+      }
     },
     '/menu': {
-      title: `${t('menu.title')} | Memet Kebab`,
-      description: t('menu.description'),
+      pl: {
+        title: 'Menu | Memet Kebab',
+        description: 'Sprawdź nasze menu pełne autentycznych tureckich smaków. Kebaby, grillowane mięsa, dania wegetariańskie i więcej.',
+      },
+      en: {
+        title: 'Menu | Memet Kebab',
+        description: 'Check our menu full of authentic Turkish flavors. Kebabs, grilled meats, vegetarian dishes, and more.',
+      }
     },
     '/locations': {
-      title: `${t('locations.title')} | Memet Kebab`,
-      description: t('locations.description'),
+      pl: {
+        title: 'Lokalizacje | Memet Kebab',
+        description: 'Znajdź najbliższą restaurację Memet Kebab. Odwiedź nas i poznaj prawdziwe smaki tureckiej kuchni.',
+      },
+      en: {
+        title: 'Locations | Memet Kebab',
+        description: 'Find your nearest Memet Kebab restaurant. Visit us and experience authentic Turkish cuisine.',
+      }
     },
     '/about': {
-      title: `${t('about.title')} | Memet Kebab`,
-      description: t('about.description'),
+      pl: {
+        title: 'O Nas | Memet Kebab',
+        description: 'Poznaj historię Memet Kebab. Dowiedz się więcej o naszej pasji do autentycznej kuchni tureckiej i tradycyjnych przepisów.',
+      },
+      en: {
+        title: 'About Us | Memet Kebab',
+        description: 'Learn about Memet Kebab\'s story. Discover our passion for authentic Turkish cuisine and traditional recipes.',
+      }
     },
     '/careers': {
-      title: `${t('careers.title')} | Memet Kebab`,
-      description: t('careers.description'),
-    },
+      pl: {
+        title: 'Kariera | Memet Kebab',
+        description: 'Dołącz do zespołu Memet Kebab. Sprawdź aktualne oferty pracy i rozwijaj się razem z nami.',
+      },
+      en: {
+        title: 'Careers | Memet Kebab',
+        description: 'Join the Memet Kebab team. Check our current job openings and grow with us.',
+      }
+    }
   };
 
   useEffect(() => {
     const currentPath = location.pathname;
-    const currentMeta = metaTags[currentPath as keyof typeof metaTags] || {
-      title: defaultTitle,
-      description: defaultDescription,
+    const lang = currentLanguage as keyof typeof defaultMetaTags;
+    const currentMeta = metaTags[currentPath as keyof typeof metaTags]?.[lang] || {
+      title: defaultMetaTags[lang].title,
+      description: defaultMetaTags[lang].description,
     };
 
     // Update meta tags
@@ -81,7 +120,7 @@ const SEOMetaTags: React.FC<MetaTagsProps> = ({
     if (twitterTitle) twitterTitle.setAttribute('content', title || currentMeta.title);
     if (twitterDescription) twitterDescription.setAttribute('content', description || currentMeta.description);
     if (twitterImage) twitterImage.setAttribute('content', image);
-  }, [location, title, description, image, type, t]);
+  }, [location, title, description, image, type, currentLanguage]);
 
   return null;
 };
