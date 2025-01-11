@@ -112,14 +112,15 @@ export default function MenuPage() {
   });
 
   return (
-    <div className="min-h-screen bg-white pt-24">
-      <div className="container mx-auto px-4 pb-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 pt-24">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxIDAgNiAyLjY5IDYgNnMtMi42OSA2LTYgNi02LTIuNjktNi02IDIuNjktNiA2LTZ6IiBzdHJva2U9InJnYmEoMjEzLDE3LDQyLDAuMDgpIiBzdHJva2Utd2lkdGg9IjIiLz48L2c+PC9zdmc+')] opacity-40"></div>
+      <div className="container mx-auto px-4 pb-12 relative">
         {/* Back button */}
         <motion.button
           onClick={() => navigate(-1)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mb-8 flex items-center gap-2 text-[rgba(32,12,0,0.7)] hover:text-[rgba(32,12,0,255)] transition-colors relative z-10"
+          className="mb-8 flex items-center gap-2 text-[rgba(32,12,0,0.7)] hover:text-[rgba(32,12,0,255)] transition-colors relative z-10 bg-white px-4 py-2 rounded-xl shadow-sm hover:shadow-md"
         >
           <ArrowLeft className="w-5 h-5" />
           {t('menu.back')}
@@ -131,37 +132,47 @@ export default function MenuPage() {
           animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold mb-4 text-[rgba(32,12,0,255)]">{t('menu.title')}</h1>
-          <p className="text-[rgba(32,12,0,0.7)] max-w-2xl mx-auto mb-8">
+          <div className="inline-flex items-center px-4 py-1.5 bg-[rgba(213,17,42,255)]/5 rounded-full mb-6">
+            <span className="text-[rgba(213,17,42,255)] font-medium text-sm">Our Menu</span>
+          </div>
+          <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[rgba(32,12,0,255)] to-[rgba(213,17,42,255)]">
+            {t('menu.title')}
+          </h1>
+          <p className="text-xl text-[rgba(32,12,0,0.7)] max-w-2xl mx-auto mb-12 leading-relaxed">
             {t('menu.subtitle')}
           </p>
 
           {/* Search Bar */}
-          <div className="relative w-full max-w-md mx-auto mb-8">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[rgba(32,12,0,0.7)]" />
-            <input
-              type="text"
-              placeholder={t('menu.search')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-[rgba(32,12,0,0.1)] rounded-full text-[rgba(32,12,0,255)] focus:outline-none focus:ring-2 focus:ring-[rgba(213,17,42,255)]"
-            />
+          <div className="relative w-full max-w-md mx-auto mb-12">
+            <div className="absolute inset-0 bg-gradient-to-r from-[rgba(213,17,42,255)]/10 to-transparent rounded-2xl blur-xl"></div>
+            <div className="relative bg-white rounded-2xl shadow-lg">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[rgba(213,17,42,255)]" />
+              <input
+                type="text"
+                placeholder={t('menu.search')}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 rounded-2xl text-[rgba(32,12,0,255)] focus:outline-none focus:ring-2 focus:ring-[rgba(213,17,42,255)] transition-shadow"
+              />
+            </div>
           </div>
 
           {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
             {categories.map((category) => (
-              <button
+              <motion.button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-4 py-2 rounded-full text-sm transition-colors ${
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
                   selectedCategory === category.id
-                    ? 'bg-[rgba(213,17,42,255)] text-white'
-                    : 'bg-[rgba(32,12,0,0.1)] text-[rgba(32,12,0,0.7)] hover:bg-[rgba(32,12,0,0.2)]'
+                    ? 'bg-[rgba(213,17,42,255)] text-white shadow-lg'
+                    : 'bg-white text-[rgba(32,12,0,0.7)] hover:text-[rgba(32,12,0,255)] shadow-sm hover:shadow-md'
                 }`}
               >
                 {t(category.label)}
-              </button>
+              </motion.button>
             ))}
           </div>
         </motion.div>
@@ -174,50 +185,61 @@ export default function MenuPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={hasAnimated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="relative overflow-hidden rounded-xl bg-white backdrop-blur-sm border border-[rgba(32,12,0,0.1)] shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer"
               onClick={() => setSelectedProduct(item)}
             >
-              <div className="aspect-w-16 aspect-h-9">
+              <div className="relative h-56">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
                 <img
                   src={item.image}
                   alt={t(item.title)}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
-              </div>
-              {item.isPromo && (
-                <div className="absolute top-4 right-4 bg-[rgba(213,17,42,255)] text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                  {t('menu.specialOffer')}
-                </div>
-              )}
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-bold mb-2 text-[rgba(32,12,0,255)]">{t(item.title)}</h3>
-                    {item.rating && (
-                      <div className="flex items-center gap-2 text-[rgba(32,12,0,0.7)]">
-                        <Star className="w-4 h-4 fill-[rgba(213,17,42,255)] text-[rgba(213,17,42,255)]" />
-                        <span>{item.rating}</span>
-                        <span>({item.reviews} {t('menu.reviews')})</span>
-                      </div>
-                    )}
+                {item.isPromo && (
+                  <div className="absolute top-4 right-4 z-20">
+                    <div className="bg-[rgba(213,17,42,255)] text-white px-4 py-1.5 rounded-xl text-sm font-medium shadow-lg">
+                      {t('menu.specialOffer')}
+                    </div>
                   </div>
-                  <span className="text-[rgba(213,17,42,255)] font-bold">{item.price}</span>
+                )}
+                <div className="absolute bottom-4 right-4 z-20 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1.5 flex items-center gap-1.5">
+                  <Star className="w-4 h-4 text-[rgba(213,17,42,255)]" />
+                  <span className="font-medium text-[rgba(32,12,0,255)]">{item.rating}</span>
+                  <span className="text-sm text-[rgba(32,12,0,0.7)]">({item.reviews})</span>
                 </div>
-                <p className="text-[rgba(32,12,0,0.7)]">{t(item.description)}</p>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-[rgba(32,12,0,255)] group-hover:text-[rgba(213,17,42,255)] transition-colors">
+                  {t(item.title)}
+                </h3>
+                <p className="text-[rgba(32,12,0,0.7)] text-sm mb-4 line-clamp-2">
+                  {t(item.description)}
+                </p>
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold text-[rgba(213,17,42,255)]">{item.price}</span>
+                  {item.features && item.features.length > 0 && (
+                    <div className="flex gap-2">
+                      {item.features.map((feature, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs px-2 py-1 rounded-lg bg-[rgba(213,17,42,255)]/5 text-[rgba(213,17,42,255)]"
+                        >
+                          {t(feature)}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      {/* Product Modal */}
-      {selectedProduct && (
-        <ProductModal
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-        />
-      )}
+      <ProductModal 
+        product={selectedProduct} 
+        onClose={() => setSelectedProduct(null)} 
+      />
     </div>
   );
 }

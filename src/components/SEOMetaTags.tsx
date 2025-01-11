@@ -79,16 +79,38 @@ const SEOMetaTags: React.FC<MetaTagsProps> = ({
         title: 'Careers | Memet Kebab',
         description: 'Join the Memet Kebab team. Check our current job openings and grow with us.',
       }
+    },
+    '/privacy-policy': {
+      pl: {
+        title: 'Polityka Prywatności | Memet Kebab',
+        description: 'Zapoznaj się z naszą polityką prywatności. Dowiedz się, jak chronimy Twoje dane osobowe.',
+      },
+      en: {
+        title: 'Privacy Policy | Memet Kebab',
+        description: 'Read our privacy policy. Learn how we protect your personal data.',
+      }
+    },
+    '/terms-of-service': {
+      pl: {
+        title: 'Regulamin | Memet Kebab',
+        description: 'Zapoznaj się z regulaminem korzystania z naszych usług.',
+      },
+      en: {
+        title: 'Terms of Service | Memet Kebab',
+        description: 'Read our terms of service for using our services.',
+      }
     }
   };
 
   useEffect(() => {
     const currentPath = location.pathname;
     const lang = currentLanguage as keyof typeof defaultMetaTags;
-    const currentMeta = metaTags[currentPath as keyof typeof metaTags]?.[lang] || {
-      title: defaultMetaTags[lang].title,
-      description: defaultMetaTags[lang].description,
-    };
+    
+    // First try to get meta tags for the current path
+    const pathMeta = metaTags[currentPath as keyof typeof metaTags]?.[lang];
+    
+    // If path meta exists, use it, otherwise fall back to default meta
+    const currentMeta = pathMeta || defaultMetaTags[lang] || defaultMetaTags['en'];
 
     // Update meta tags
     document.title = title || currentMeta.title;

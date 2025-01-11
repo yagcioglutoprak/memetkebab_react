@@ -54,9 +54,10 @@ export default function Header({ onOrderClick }: HeaderProps) {
   return (
     <motion.header 
       style={{ backgroundColor: headerBg }}
-      className="fixed w-full z-50 backdrop-blur-sm transition-all duration-300 text-[rgba(32,12,0,255)]"
+      className="fixed w-full z-50 backdrop-blur-md shadow-sm transition-all duration-300"
     >
-      <nav className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-gray-50/80"></div>
+      <nav className="container mx-auto px-4 py-4 flex items-center justify-between relative">
         <motion.div
           style={{ scale: logoScale }}
           className="relative group cursor-pointer"
@@ -65,29 +66,49 @@ export default function Header({ onOrderClick }: HeaderProps) {
           <motion.img 
             src="https://i.ibb.co/gmLc3MQ/memet-kebab-white-bcg-rgb.png" 
             alt="Memet Kebab" 
-            className="h-12 md:h-16 transition-transform duration-300"
+            className="h-12 md:h-14 transition-transform duration-300"
           />
         </motion.div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8 text-sm">
-          <button onClick={() => handleNavigation('about')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.about')}</button>
-          <button onClick={() => navigate('/menu')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.menu')}</button>
-          <button onClick={() => navigate('/locations')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.locations')}</button>
-          <button onClick={() => handleNavigation('contact')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.contact')}</button>
-          <button onClick={() => navigate('/careers')} className="hover:text-[rgba(213,17,42,255)] transition">{t('nav.joinUs')}</button>
-          <LanguageSwitcher />
-          <button 
-            onClick={onOrderClick}
-            className="bg-[rgba(213,17,42,255)] text-white px-6 py-2 rounded-full hover:bg-[rgba(193,15,38,255)] transition"
-          >
-            {t('nav.orderNow')}
-          </button>
+        <div className="hidden md:flex items-center gap-6">
+          <div className="flex items-center gap-2 bg-white/50 backdrop-blur-sm px-3 py-2 rounded-xl shadow-sm">
+            {[
+              { label: t('nav.about'), action: () => navigate('/about') },
+              { label: t('nav.menu'), action: () => navigate('/menu') },
+              { label: t('nav.locations'), action: () => navigate('/locations') },
+              { label: t('nav.contact'), action: () => handleNavigation('contact') },
+              { label: t('nav.joinUs'), action: () => navigate('/careers') }
+            ].map((item, index) => (
+              <motion.button
+                key={index}
+                onClick={item.action}
+                className="px-4 py-2 text-sm font-medium text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] rounded-lg transition-colors relative group"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {item.label}
+                <div className="absolute inset-0 bg-[rgba(213,17,42,255)]/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </motion.button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <motion.button 
+              onClick={onOrderClick}
+              className="bg-[rgba(213,17,42,255)] text-white px-6 py-2.5 rounded-xl font-medium hover:bg-[rgba(193,15,38,255)] transition-colors shadow-lg hover:shadow-xl flex items-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {t('nav.orderNow')}
+            </motion.button>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
         <motion.button 
-          className="md:hidden p-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+          className="md:hidden p-2 rounded-xl hover:bg-[rgba(213,17,42,255)]/5 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.95 }}
         >
@@ -96,55 +117,40 @@ export default function Header({ onOrderClick }: HeaderProps) {
 
         {/* Mobile Menu */}
         <motion.div 
-          className={`${isOpen ? 'flex' : 'hidden'} md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-xl`}
+          className={`${isOpen ? 'flex' : 'hidden'} md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 shadow-2xl`}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
         >
-          <div className="container mx-auto px-4 py-6 flex flex-col items-center gap-6">
-            <motion.button 
-              onClick={() => { handleNavigation('about'); setIsOpen(false); }} 
-              className="w-full text-center py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors text-lg"
-              whileTap={{ scale: 0.98 }}
-            >
-              {t('nav.about')}
-            </motion.button>
-            <motion.button 
-              onClick={() => { navigate('/menu'); setIsOpen(false); }} 
-              className="w-full text-center py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors text-lg"
-              whileTap={{ scale: 0.98 }}
-            >
-              {t('nav.menu')}
-            </motion.button>
-            <motion.button 
-              onClick={() => { navigate('/locations'); setIsOpen(false); }} 
-              className="w-full text-center py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors text-lg"
-              whileTap={{ scale: 0.98 }}
-            >
-              {t('nav.locations')}
-            </motion.button>
-            <motion.button 
-              onClick={() => { handleNavigation('contact'); setIsOpen(false); }} 
-              className="w-full text-center py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors text-lg"
-              whileTap={{ scale: 0.98 }}
-            >
-              {t('nav.contact')}
-            </motion.button>
-            <motion.button 
-              onClick={() => { navigate('/careers'); setIsOpen(false); }} 
-              className="w-full text-center py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors text-lg"
-              whileTap={{ scale: 0.98 }}
-            >
-              {t('nav.joinUs')}
-            </motion.button>
+          <div className="container mx-auto px-4 py-6 flex flex-col items-stretch gap-3">
+            {[
+              { label: t('nav.about'), action: () => { navigate('/about'); setIsOpen(false); } },
+              { label: t('nav.menu'), action: () => { navigate('/menu'); setIsOpen(false); } },
+              { label: t('nav.locations'), action: () => { navigate('/locations'); setIsOpen(false); } },
+              { label: t('nav.contact'), action: () => { handleNavigation('contact'); setIsOpen(false); } },
+              { label: t('nav.joinUs'), action: () => { navigate('/careers'); setIsOpen(false); } }
+            ].map((item, index) => (
+              <motion.button 
+                key={index}
+                onClick={item.action}
+                className="w-full text-left py-3 px-4 rounded-xl hover:bg-[rgba(213,17,42,255)]/5 transition-colors text-[rgba(32,12,0,0.7)] hover:text-[rgba(32,12,0,255)] font-medium"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+              >
+                {item.label}
+              </motion.button>
+            ))}
             
-            <div className="w-full border-t border-gray-200 my-2"></div>
+            <div className="w-full border-t border-gray-100 my-3"></div>
             
-            <LanguageSwitcher />
+            <div className="px-4">
+              <LanguageSwitcher />
+            </div>
             
             <motion.button 
               onClick={() => { onOrderClick(); setIsOpen(false); }}
-              className="w-full bg-[rgba(213,17,42,255)] text-white text-center py-3 px-6 rounded-lg hover:bg-[rgba(193,15,38,255)] transition-colors text-lg font-medium"
-              whileTap={{ scale: 0.98 }}
+              className="mx-4 bg-[rgba(213,17,42,255)] text-white text-center py-3 px-6 rounded-xl hover:bg-[rgba(193,15,38,255)] transition-colors text-base font-medium shadow-lg"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
             >
               {t('nav.orderNow')}
             </motion.button>

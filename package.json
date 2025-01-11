@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/js-cookie": "^3.0.6",
     "framer-motion": "^11.0.8",
+    "inter-font": "^3.19.0",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
