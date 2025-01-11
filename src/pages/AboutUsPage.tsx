@@ -25,7 +25,7 @@ export default function AboutUsPage() {
             className="w-48 h-48 mx-auto mb-8 relative"
           >
             <img 
-              src="/src/theme/memet-kebab-white-bcg-rgb.png" 
+              src="/memet-kebab-white-bcg-rgb.png" 
               alt="Memet Logo"
               className="w-full h-full object-contain"
             />
