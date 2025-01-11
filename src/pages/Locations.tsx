@@ -55,7 +55,7 @@ const locations: Location[] = [
 ];
 
 const customIcon = new Icon({
-  iconUrl: '/src/theme/memet-kebab-white-bcg-rgb.png',
+  iconUrl: '/memet-kebab-white-bcg-rgb.png',
   iconSize: [32, 32],
   iconAnchor: [16, 32],
   popupAnchor: [0, -32],
