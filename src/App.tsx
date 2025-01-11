@@ -42,19 +42,19 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
 
   const carouselSlides = [
     {
-      image: "/public/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
+      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
       title: "BOGO Deal",
       description: "Buy one döner, get one free! Valid Monday-Thursday",
       link: "/menu?promo=bogo"
     },
     {
-      image: "/public/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
+      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
       title: "Family Feast Special",
       description: "30% off on family platters every weekend",
       link: "/menu?promo=family"
     },
     {
-      image: "/public/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
+      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
       title: "Student Discount",
       description: "Show your student ID for 15% off",
       link: "/menu?promo=student"
@@ -83,26 +83,26 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
       title: t('products.classicDoner.title'),
       price: "$12.99",
       description: t('products.classicDoner.description'),
-      image: "/public/Boeuf et Kebab avec Sauce Ail.jpg",
+      image: "/Boeuf et Kebab avec Sauce Ail.jpg",
       isPromo: true
     },
     {
       title: t('products.mixedGrill.title'),
       price: "$18.99",
       description: t('products.mixedGrill.description'),
-      image: "/public/Kebab avec frites.jpg"
+      image: "/Kebab avec frites.jpg"
     },
     {
       title: t('products.falafel.title'),
       price: "$11.99",
       description: t('products.falafel.description'),
-      image: "/public/Shaurma au poulet dans pita.jpg"
+      image: "/Shaurma au poulet dans pita.jpg"
     },
     {
       title: t('products.iskender.title'),
       price: "$16.99",
       description: t('products.iskender.description'),
-      image: "/public/Döner Kebab Photo.jpg",
+      image: "/Kanapka z kebabem.jpg",
       isPromo: true
     }
   ];
@@ -111,12 +111,12 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
     {
       title: t('promos.familyFeast.title'),
       description: t('promos.familyFeast.description'),
-      image: "/public/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg"
+      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg"
     },
     {
       title: t('promos.studentSpecial.title'),
       description: t('promos.studentSpecial.description'),
-      image: "/public/Giros High-Res Stock Photo.jpg"
+      image: "/Giros High-Res Stock Photo.jpg"
     }
   ];
 

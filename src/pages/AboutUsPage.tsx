@@ -99,7 +99,7 @@ export default function AboutUsPage() {
               <div className="sticky top-8">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                   <img 
-                    src="/public/Dürüm Vegan Kebab.jpg"
+                    src="/prep.jpg"
                     alt="The Art of Döner Preparation" 
                     className="w-full h-[500px] object-cover"
                   />
@@ -187,7 +187,7 @@ export default function AboutUsPage() {
                   className="sticky top-24"
                 >
                   <img 
-                    src="/public/Döner Kebap Adana.jpg"
+                    src="/Döner Kebap Adana.jpg"
                     alt="Premium quality meat"
                     className="rounded-2xl shadow-2xl w-full h-[600px] object-cover"
                   />
@@ -318,7 +318,7 @@ export default function AboutUsPage() {
               >
                 <div className="rounded-2xl overflow-hidden shadow-2xl">
                   <img 
-                    src="/public/stock-photo--a-famous-kebab-restaurant-that-i-ate-in-berlin-germany-fresh-vegetables-and-fast-service-was-1931061614.jpg"
+                    src="stock-photo--a-famous-kebab-restaurant-that-i-ate-in-berlin-germany-fresh-vegetables-and-fast-service-was-1931061614.jpg"
                     alt="People enjoying döner" 
                     className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
                   />

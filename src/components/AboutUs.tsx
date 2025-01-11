@@ -68,7 +68,7 @@ export default function AboutUs() {
               className="relative"
             >
               <img 
-                src="/public/Döner turc préparation.jpg"
+                src="/prep.jpg"
                 alt="Restaurant interior"
                 className="rounded-lg shadow-2xl"
               />
@@ -139,7 +139,7 @@ export default function AboutUs() {
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <img 
-                    src="public/Döner Kebap Adana.jpg"
+                    src="/Döner Kebap Adana.jpg"
                     alt="Premium quality meat"
                     className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
                   />
