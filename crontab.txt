@@ -1,0 +1,1 @@
+*/30 * * * * cd /Users/toprakyagcioglu/Downloads/memet-bot-latest-dev && ./auto-git.sh
