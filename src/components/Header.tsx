@@ -77,6 +77,7 @@ export default function Header({ onOrderClick }: HeaderProps) {
               { label: t('nav.about'), action: () => navigate('/about') },
               { label: t('nav.menu'), action: () => navigate('/menu') },
               { label: t('nav.locations'), action: () => navigate('/locations') },
+              { label: t('nav.franchise'), action: () => navigate('/franchise') },
               { label: t('nav.contact'), action: () => handleNavigation('contact') },
               { label: t('nav.joinUs'), action: () => navigate('/careers') }
             ].map((item, index) => (

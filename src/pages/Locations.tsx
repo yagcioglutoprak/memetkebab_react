@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -13,7 +14,6 @@ interface Location {
   address: string;
   position: [number, number];
   hours: string;
-  phone: string;
   status: 'active' | 'coming-soon';
 }
 
@@ -31,7 +31,6 @@ const locations: Location[] = [
     address: 'ul. Starowiślna 16, 31-038 Kraków',
     position: [50.0573, 19.9441],
     hours: 'Mon-Sun: 11:00-23:00',
-    phone: '+48 123 456 789',
     status: 'active'
   },
   {
@@ -40,7 +39,6 @@ const locations: Location[] = [
     address: 'ul. Nowy Świat 15, 00-029 Warszawa',
     position: [52.2297, 21.0122],
     hours: 'Mon-Sun: 11:00-23:00',
-    phone: '+48 123 456 790',
     status: 'active'
   },
   {
@@ -49,7 +47,6 @@ const locations: Location[] = [
     address: 'ul. Rynek 13, 50-101 Wrocław',
     position: [51.1079, 17.0385],
     hours: 'Mon-Sun: 11:00-23:00',
-    phone: '+48 123 456 791',
     status: 'coming-soon'
   }
 ];
@@ -73,6 +70,7 @@ function MapUpdater({ center, zoom }: { center: [number, number]; zoom: number }
 }
 
 export default function Locations() {
+  const { t } = useLanguage();
   const [mapCenter, setMapCenter] = useState<[number, number]>([52.0693, 19.4803]); // Center of Poland
   const [zoom, setZoom] = useState(6);
   const [searchQuery, setSearchQuery] = useState('');
@@ -412,8 +410,8 @@ export default function Locations() {
         <div className="container mx-auto px-4 pt-32 pb-16 relative">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h1 className="text-5xl font-bold text-[rgba(32,12,0,1)] mb-4">Our Locations</h1>
-              <p className="text-xl text-gray-600">Find the nearest Memet Kebab restaurant to satisfy your cravings</p>
+              <h1 className="text-5xl font-bold text-[rgba(32,12,0,1)] mb-4">{t('locations.title')}</h1>
+              <p className="text-xl text-gray-600">{t('locations.subtitle')}</p>
             </div>
             
             <div className="bg-white rounded-2xl p-8 shadow-xl">
@@ -425,7 +423,7 @@ export default function Locations() {
                         <ComboboxInput
                           value={searchQuery}
                           onChange={(e) => handleSearchInput(e.target.value)}
-                          placeholder="Search by address, city, or street name..."
+                          placeholder={t('locations.search.placeholder')}
                           className="w-full px-6 py-4 rounded-xl text-gray-900 placeholder-gray-500 bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[rgba(213,17,42,255)] shadow-sm"
                           autoComplete="off"
                         />
@@ -470,12 +468,12 @@ export default function Locations() {
                   {isSearching ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
-                      Finding Location...
+                      {t('locations.search.finding')}
                     </>
                   ) : (
                     <>
                       <Navigation className="w-5 h-5" />
-                      Find Nearest Location
+                      {t('locations.search.button')}
                     </>
                   )}
                 </button>
@@ -520,7 +518,7 @@ export default function Locations() {
                     <div 
                       className={`location-status ${location.status === 'active' ? 'active' : 'coming-soon'}`}
                     >
-                      {location.status === 'active' ? 'Open' : 'Coming Soon'}
+                      {location.status === 'active' ? t('locations.status.active') : t('locations.status.comingSoon')}
                     </div>
                     <div className="px-4 py-3.5">
                       <h3 className="text-base font-bold text-gray-900 pr-16 leading-snug mb-3">{location.name}</h3>
@@ -537,7 +535,7 @@ export default function Locations() {
                               rel="noopener noreferrer"
                               className="text-[13px] font-medium text-[rgba(213,17,42,255)] hover:underline mt-1 inline-block"
                             >
-                              Get Directions
+                              {t('locations.getDirections')}
                             </a>
                           </div>
                         </div>
@@ -547,16 +545,6 @@ export default function Locations() {
                             <div className="flex items-center gap-2.5">
                               <Clock className="w-4 h-4 text-[rgba(213,17,42,255)] flex-shrink-0" />
                               <p className="text-[13px] text-gray-700 leading-normal">{location.hours}</p>
-                            </div>
-
-                            <div className="flex items-center gap-2.5">
-                              <Phone className="w-4 h-4 text-[rgba(213,17,42,255)] flex-shrink-0" />
-                              <a 
-                                href={`tel:${location.phone}`}
-                                className="text-[13px] font-medium text-[rgba(213,17,42,255)] hover:underline"
-                              >
-                                {location.phone}
-                              </a>
                             </div>
                           </>
                         )}

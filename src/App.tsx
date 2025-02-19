@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, Facebook, Instagram, Twitter, Mail, Phone, MapPinned, Users, Star, Utensils, Timer, Heart, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { useLanguage } from './contexts/LanguageContext';
+import { useLanguage, LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Header';
 import Section from './components/Section';
 import MenuCard from './components/MenuCard';
@@ -14,10 +14,21 @@ import Locations from './pages/Locations';
 import MenuPage from './pages/MenuPage';
 import MaintenancePage from './pages/MaintenancePage';
 import CareersPage from './pages/CareersPage';
+import FranchisePage from './pages/FranchisePage';
 import AboutUsPage from './pages/AboutUsPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import logo from './theme/memet-kebab-white-bcg-rgb.png';
+import carousel1 from './assets/1920.jpg';
+import carousel2 from './assets/2.jpg';
+import carousel3 from './assets/3.jpg';
+import menu1 from './assets/menu 1.jpg';
+import menu2 from './assets/menu 2.jpg';
+import menu3 from './assets/menu 3.jpeg';
+import menu4 from './assets/menu 4.jpeg';
+import menu5 from './assets/menu 5.jpeg';
+import menu6 from './assets/menu 6.jpeg';
+import menu7 from './assets/menu 7.jpeg';
 import SEOMetaTags from './components/SEOMetaTags';
 import HeroCarousel from './components/HeroCarousel';
 
@@ -42,19 +53,19 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
 
   const carouselSlides = [
     {
-      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
+      image: carousel2,
       title: "BOGO Deal",
       description: "Buy one döner, get one free! Valid Monday-Thursday",
       link: "/menu?promo=bogo"
     },
     {
-      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
+      image: carousel3,
       title: "Family Feast Special",
       description: "30% off on family platters every weekend",
       link: "/menu?promo=family"
     },
     {
-      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg",
+      image: carousel1,
       title: "Student Discount",
       description: "Show your student ID for 15% off",
       link: "/menu?promo=student"
@@ -83,27 +94,45 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
       title: t('products.classicDoner.title'),
       price: "$12.99",
       description: t('products.classicDoner.description'),
-      image: "/Boeuf et Kebab avec Sauce Ail.jpg",
+      image: menu1,
       isPromo: true
     },
     {
       title: t('products.mixedGrill.title'),
       price: "$18.99",
       description: t('products.mixedGrill.description'),
-      image: "/Kebab avec frites.jpg"
+      image: menu2
     },
     {
       title: t('products.falafel.title'),
       price: "$11.99",
       description: t('products.falafel.description'),
-      image: "/Shaurma au poulet dans pita.jpg"
+      image: menu3
     },
     {
       title: t('products.iskender.title'),
       price: "$16.99",
       description: t('products.iskender.description'),
-      image: "/Kanapka z kebabem.jpg",
+      image: menu4,
       isPromo: true
+    },
+    {
+      title: t('products.lahmacun.title'),
+      price: "$14.99",
+      description: t('products.lahmacun.description'),
+      image: menu5
+    },
+    {
+      title: t('products.pide.title'),
+      price: "$15.99",
+      description: t('products.pide.description'),
+      image: menu6
+    },
+    {
+      title: t('products.kebabPlate.title'),
+      price: "$19.99",
+      description: t('products.kebabPlate.description'),
+      image: menu7
     }
   ];
 
@@ -398,6 +427,7 @@ function App() {
         <Route path="/locations" element={<Locations />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path="/careers" element={<CareersPage />} />
+        <Route path="/franchise" element={<FranchisePage />} />
         <Route path="/about" element={<AboutUsPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
@@ -457,4 +487,12 @@ function App() {
   );
 }
 
-export default App;
+function WrappedApp() {
+  return (
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
+  );
+}
+
+export default WrappedApp;

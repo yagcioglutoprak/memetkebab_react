@@ -4,6 +4,13 @@ import { ArrowLeft, Search, Filter, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import ProductModal from '../components/ProductModal';
+import menu1 from '../assets/menu 1.jpg';
+import menu2 from '../assets/menu 2.jpg';
+import menu3 from '../assets/menu 3.jpeg';
+import menu4 from '../assets/menu 4.jpeg';
+import menu5 from '../assets/menu 5.jpeg';
+import menu6 from '../assets/menu 6.jpeg';
+import menu7 from '../assets/menu 7.jpeg';
 
 const categories = [
   { id: 'all', label: 'menu.categories.all' },
@@ -21,7 +28,7 @@ const fullMenuItems = [
     title: 'products.classicDoner.title',
     price: "$12.99",
     description: 'products.classicDoner.description',
-    image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&q=80",
+    image: menu1,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'doner',
     rating: 4.9,
@@ -32,7 +39,7 @@ const fullMenuItems = [
     title: 'products.mixedGrill.title',
     price: "$18.99",
     description: 'products.mixedGrill.description',
-    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80",
+    image: menu2,
     features: ['product.features.chef'],
     category: 'doner',
     rating: 4.8,
@@ -42,7 +49,7 @@ const fullMenuItems = [
     title: 'products.adanaKebab.title',
     price: "$16.99",
     description: 'products.adanaKebab.description',
-    image: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&q=80",
+    image: menu3,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'kebab',
     rating: 4.9,
@@ -52,7 +59,7 @@ const fullMenuItems = [
     title: 'products.iskender.title',
     price: "$16.99",
     description: 'products.iskender.description',
-    image: "https://images.unsplash.com/photo-1530469912745-a215c6b256ea?auto=format&fit=crop&q=80",
+    image: menu4,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'kebab',
     rating: 4.7,
@@ -60,24 +67,34 @@ const fullMenuItems = [
     isPromo: true
   },
   {
-    title: 'products.falafel.title',
-    price: "$11.99",
-    description: 'products.falafel.description',
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80",
+    title: 'products.lahmacun.title',
+    price: "$14.99",
+    description: 'products.lahmacun.description',
+    image: menu5,
     features: ['product.features.traditional'],
-    category: 'vegetarian',
+    category: 'lahmacun',
     rating: 4.6,
     reviews: 156
   },
   {
-    title: 'products.cheesePide.title',
-    price: "$13.99",
-    description: 'products.cheesePide.description',
-    image: "https://images.unsplash.com/photo-1662116765994-1e4200c43589?auto=format&fit=crop&q=80",
+    title: 'products.pide.title',
+    price: "$15.99",
+    description: 'products.pide.description',
+    image: menu6,
     features: ['product.features.traditional'],
     category: 'pide',
     rating: 4.8,
     reviews: 167
+  },
+  {
+    title: 'products.kebabPlate.title',
+    price: "$19.99",
+    description: 'products.kebabPlate.description',
+    image: menu7,
+    features: ['product.features.chef', 'product.features.traditional'],
+    category: 'kebab',
+    rating: 4.9,
+    reviews: 198
   }
 ];
 

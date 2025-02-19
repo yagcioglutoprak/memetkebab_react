@@ -81,10 +81,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
             <img
               src={slides[currentIndex].image}
               alt={slides[currentIndex].title}
-              className="w-full h-full object-cover opacity-70"
+              className="w-full h-full object-cover object-center opacity-85"
               style={{ willChange: 'transform' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 text-white">
               <motion.h2
                 initial={{ y: 20, opacity: 0 }}

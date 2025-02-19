@@ -2,10 +2,16 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ChevronDown } from 'lucide-react';
 
-const languageNames = {
+const languageNames: { [key: string]: string } = {
   en: 'English',
+  de: 'Deutsch',
+  cs: 'Čeština',
+  hu: 'Magyar',
   pl: 'Polski',
-  ro: 'Română'
+  ro: 'Română',
+  ru: 'Русский',
+  sl: 'Slovenščina',
+  uk: 'Українська'
 };
 
 export default function LanguageSwitcher() {
@@ -42,7 +48,7 @@ export default function LanguageSwitcher() {
             <button
               key={code}
               onClick={() => {
-                setLanguage(code as 'en' | 'pl' | 'ro');
+                setLanguage(code);
                 setIsOpen(false);
               }}
               className={`w-full text-left px-4 py-2 text-sm transition-colors ${
