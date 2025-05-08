@@ -4,101 +4,88 @@ import { ArrowLeft, Search, Filter, Star } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import ProductModal from '../components/ProductModal';
-import menu1 from '../assets/menu 1.jpg';
-import menu2 from '../assets/menu 2.jpg';
-import menu3 from '../assets/menu 3.jpeg';
-import menu4 from '../assets/menu 4.jpeg';
-import menu5 from '../assets/menu 5.jpeg';
-import menu6 from '../assets/menu 6.jpeg';
-import menu7 from '../assets/menu 7.jpeg';
+import donerDurum from '../assets/menu_items /döner_png_dürüm.png';
+import donerWithKetchup from '../assets/menu_items /2_döner_with_ketchup.webp';
+import wrap from '../assets/menu_items /wrap.webp';
+import singleDonerMenu from '../assets/menu_items /single döner menü .webp';
+import sandvic from '../assets/menu_items /sandviç .webp';
+import menuDurum from '../assets/menu_items /menu_4_dürüm .webp';
 
 const categories = [
   { id: 'all', label: 'menu.categories.all' },
   { id: 'doner', label: 'menu.categories.doner' },
-  { id: 'kebab', label: 'menu.categories.kebab' },
-  { id: 'pide', label: 'menu.categories.pide' },
-  { id: 'lahmacun', label: 'menu.categories.lahmacun' },
-  { id: 'vegetarian', label: 'menu.categories.vegetarian' },
-  { id: 'desserts', label: 'menu.categories.desserts' },
-  { id: 'drinks', label: 'menu.categories.drinks' }
+  { id: 'durum', label: 'menu.categories.durum' },
+  { id: 'menu', label: 'menu.categories.menu' },
+  { id: 'sandwich', label: 'menu.categories.sandwich' },
+  { id: 'wrap', label: 'menu.categories.wrap' }
 ];
 
 const fullMenuItems = [
   {
-    title: 'products.classicDoner.title',
-    price: "$12.99",
-    description: 'products.classicDoner.description',
-    image: menu1,
+    title: 'products.donerDurum.title',
+    price: "€8.99",
+    description: 'products.donerDurum.description',
+    image: donerDurum,
     features: ['product.features.chef', 'product.features.traditional'],
-    category: 'doner',
+    category: 'durum',
     rating: 4.9,
     reviews: 328,
     isPromo: true
   },
   {
-    title: 'products.mixedGrill.title',
-    price: "$18.99",
-    description: 'products.mixedGrill.description',
-    image: menu2,
+    title: 'products.donerWithKetchup.title',
+    price: "€9.99",
+    description: 'products.donerWithKetchup.description',
+    image: donerWithKetchup,
     features: ['product.features.chef'],
     category: 'doner',
     rating: 4.8,
     reviews: 246
   },
   {
-    title: 'products.adanaKebab.title',
-    price: "$16.99",
-    description: 'products.adanaKebab.description',
-    image: menu3,
+    title: 'products.wrap.title',
+    price: "€7.99",
+    description: 'products.wrap.description',
+    image: wrap,
     features: ['product.features.chef', 'product.features.traditional'],
-    category: 'kebab',
-    rating: 4.9,
+    category: 'wrap',
+    rating: 4.7,
     reviews: 187
   },
   {
-    title: 'products.iskender.title',
-    price: "$16.99",
-    description: 'products.iskender.description',
-    image: menu4,
+    title: 'products.singleDonerMenu.title',
+    price: "€12.99",
+    description: 'products.singleDonerMenu.description',
+    image: singleDonerMenu,
     features: ['product.features.chef', 'product.features.traditional'],
-    category: 'kebab',
+    category: 'menu',
     rating: 4.7,
     reviews: 203,
     isPromo: true
   },
   {
-    title: 'products.lahmacun.title',
-    price: "$14.99",
-    description: 'products.lahmacun.description',
-    image: menu5,
+    title: 'products.sandvic.title',
+    price: "€6.99",
+    description: 'products.sandvic.description',
+    image: sandvic,
     features: ['product.features.traditional'],
-    category: 'lahmacun',
+    category: 'sandwich',
     rating: 4.6,
     reviews: 156
   },
   {
-    title: 'products.pide.title',
-    price: "$15.99",
-    description: 'products.pide.description',
-    image: menu6,
-    features: ['product.features.traditional'],
-    category: 'pide',
-    rating: 4.8,
-    reviews: 167
-  },
-  {
-    title: 'products.kebabPlate.title',
-    price: "$19.99",
-    description: 'products.kebabPlate.description',
-    image: menu7,
+    title: 'products.menuDurum.title',
+    price: "€14.99",
+    description: 'products.menuDurum.description',
+    image: menuDurum,
     features: ['product.features.chef', 'product.features.traditional'],
-    category: 'kebab',
+    category: 'menu',
     rating: 4.9,
     reviews: 198
   }
 ];
 
-const menuItems = fullMenuItems.reduce((acc, item) => {
+const menuItems = fullMenuItems.reduce<Array<{ category: string; items: typeof fullMenuItems }>>((acc, item) => {
   const category = acc.find(category => category.category === item.category);
   if (category) {
     category.items.push(item);
@@ -113,7 +100,7 @@ export default function MenuPage() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<typeof fullMenuItems[0] | null>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -237,7 +224,7 @@ export default function MenuPage() {
                   <span className="text-xl font-bold text-[rgba(213,17,42,255)]">{item.price}</span>
                   {item.features && item.features.length > 0 && (
                     <div className="flex gap-2">
-                      {item.features.map((feature, idx) => (
+                      {item.features.map((feature: string, idx: number) => (
                         <span
                           key={idx}
                           className="text-xs px-2 py-1 rounded-lg bg-[rgba(213,17,42,255)]/5 text-[rgba(213,17,42,255)]"

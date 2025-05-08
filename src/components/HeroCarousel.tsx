@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 interface CarouselSlide {
   image: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   link?: string;
 }
 
@@ -17,13 +16,12 @@ interface HeroCarouselProps {
 const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(timer);
   }, [slides.length]);
@@ -62,7 +60,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
   };
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto h-[500px] overflow-hidden rounded-3xl bg-black my-8">
+    <div className="relative w-full max-w-4xl mx-auto overflow-hidden rounded-3xl bg-black my-8" style={{ aspectRatio: '3/2' }}>
       <AnimatePresence initial={false} custom={direction} mode="sync">
         <motion.div
           key={currentIndex}
@@ -80,40 +78,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slides }) => {
           <div className="relative w-full h-full">
             <img
               src={slides[currentIndex].image}
-              alt={slides[currentIndex].title}
-              className="w-full h-full object-cover object-center opacity-85"
+              alt={slides[currentIndex].title || "Carousel image"}
+              className="w-full h-full object-cover object-center"
               style={{ willChange: 'transform' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 text-white">
-              <motion.h2
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-4xl md:text-6xl font-bold mb-4"
-              >
-                {slides[currentIndex].title}
-              </motion.h2>
-              <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="text-lg md:text-xl mb-6 max-w-2xl"
-              >
-                {slides[currentIndex].description}
-              </motion.p>
-              {slides[currentIndex].link && (
-                <motion.button
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  onClick={() => navigate(slides[currentIndex].link!)}
-                  className="bg-[rgba(213,17,42,255)] text-white px-8 py-3 rounded-full hover:bg-[rgba(193,15,38,255)] transition-colors"
-                >
-                  Order Now
-                </motion.button>
-              )}
-            </div>
           </div>
         </motion.div>
       </AnimatePresence>

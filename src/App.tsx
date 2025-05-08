@@ -19,24 +19,24 @@ import AboutUsPage from './pages/AboutUsPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import logo from './theme/memet-kebab-white-bcg-rgb.png';
-import carousel1 from './assets/1920.jpg';
-import carousel2 from './assets/2.jpg';
-import carousel3 from './assets/3.jpg';
-import menu1 from './assets/menu 1.jpg';
-import menu2 from './assets/menu 2.jpg';
-import menu3 from './assets/menu 3.jpeg';
-import menu4 from './assets/menu 4.jpeg';
-import menu5 from './assets/menu 5.jpeg';
-import menu6 from './assets/menu 6.jpeg';
-import menu7 from './assets/menu 7.jpeg';
+import cafe from './assets/carousel_images/cafe.png';
+import calyDizienDoner from './assets/carousel_images/CALY_DIZIEN_DONER.webp';
+import girl_eating_döner from './assets/carousel_images/girl_eating.jpg';
+import megaZestawDoner from './assets/carousel_images/MEGA_ZESTAW_DONER.webp';
 import SEOMetaTags from './components/SEOMetaTags';
 import HeroCarousel from './components/HeroCarousel';
+import donerDurum from './assets/menu_items /döner_png_dürüm.png';
+import donerWithKetchup from './assets/menu_items /2_döner_with_ketchup.webp';
+import wrap from './assets/menu_items /wrap.webp';
+import singleDonerMenu from './assets/menu_items /single döner menü .webp';
+import sandvic from './assets/menu_items /sandviç .webp';
+import menuDurum from './assets/menu_items /menu_4_dürüm .webp';
 
 function Home({ onOrderClick }: { onOrderClick: () => void }) {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = React.useRef(null);
   const dragConstraintsRef = React.useRef(null);
@@ -53,22 +53,16 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
 
   const carouselSlides = [
     {
-      image: carousel2,
-      title: "BOGO Deal",
-      description: "Buy one döner, get one free! Valid Monday-Thursday",
-      link: "/menu?promo=bogo"
+      image: calyDizienDoner
     },
     {
-      image: carousel3,
-      title: "Family Feast Special",
-      description: "30% off on family platters every weekend",
-      link: "/menu?promo=family"
+      image: cafe
     },
     {
-      image: carousel1,
-      title: "Student Discount",
-      description: "Show your student ID for 15% off",
-      link: "/menu?promo=student"
+      image: girl_eating_döner
+    },
+    {
+      image: megaZestawDoner
     }
   ];
 
@@ -91,48 +85,42 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
 
   const menuItems = [
     {
-      title: t('products.classicDoner.title'),
-      price: "$12.99",
-      description: t('products.classicDoner.description'),
-      image: menu1,
+      title: t('products.donerDurum.title'),
+      price: "€8.99",
+      description: t('products.donerDurum.description'),
+      image: donerDurum,
       isPromo: true
     },
     {
-      title: t('products.mixedGrill.title'),
-      price: "$18.99",
-      description: t('products.mixedGrill.description'),
-      image: menu2
+      title: t('products.donerWithKetchup.title'),
+      price: "€9.99",
+      description: t('products.donerWithKetchup.description'),
+      image: donerWithKetchup
     },
     {
-      title: t('products.falafel.title'),
-      price: "$11.99",
-      description: t('products.falafel.description'),
-      image: menu3
+      title: t('products.wrap.title'),
+      price: "€7.99",
+      description: t('products.wrap.description'),
+      image: wrap
     },
     {
-      title: t('products.iskender.title'),
-      price: "$16.99",
-      description: t('products.iskender.description'),
-      image: menu4,
+      title: t('products.singleDonerMenu.title'),
+      price: "€12.99",
+      description: t('products.singleDonerMenu.description'),
+      image: singleDonerMenu,
       isPromo: true
     },
     {
-      title: t('products.lahmacun.title'),
-      price: "$14.99",
-      description: t('products.lahmacun.description'),
-      image: menu5
+      title: t('products.sandvic.title'),
+      price: "€6.99",
+      description: t('products.sandvic.description'),
+      image: sandvic
     },
     {
-      title: t('products.pide.title'),
-      price: "$15.99",
-      description: t('products.pide.description'),
-      image: menu6
-    },
-    {
-      title: t('products.kebabPlate.title'),
-      price: "$19.99",
-      description: t('products.kebabPlate.description'),
-      image: menu7
+      title: t('products.menuDurum.title'),
+      price: "€14.99",
+      description: t('products.menuDurum.description'),
+      image: menuDurum
     }
   ];
 
@@ -401,7 +389,7 @@ function ScrollToTop() {
 function App() {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   
   const handleOrderClick = () => {
     navigate('/menu');
@@ -434,51 +422,90 @@ function App() {
       </Routes>
       
       {/* Footer */}
-      <footer className="bg-gray-50 py-12">
+      <footer className="bg-gradient-to-b from-gray-50 to-gray-100 pt-16 pb-8 border-t border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-5 gap-8">
-            <div className="md:col-span-2">
-              <img src={logo} alt="Memet Kebab" className="w-32 mb-4" />
-              <p className="text-[rgba(32,12,0,0.7)]">{t('footer.description')}</p>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.quickLinks')}</h3>
-              <ul className="space-y-2">
-                <li><button onClick={() => navigate('/menu')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.menu')}</button></li>
-                <li><button onClick={() => navigate('/locations')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.locations')}</button></li>
-                <li><button onClick={() => navigate('/about')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.about')}</button></li>
-                <li><button onClick={() => navigate('/careers')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.careers')}</button></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.contact')}</h3>
-              <ul className="space-y-2">
-                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.address')}</li>
-                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.city')}</li>
-                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.phone')}</li>
-                <li className="text-[rgba(32,12,0,0.7)]">{t('footer.email')}</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-4 text-[rgba(32,12,0,255)]">{t('footer.followUs')}</h3>
-              <div className="flex space-x-4 mb-6">
-                <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
-                  <Facebook className="w-6 h-6" />
-                </a>
-                <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
-                  <Twitter className="w-6 h-6" />
-                </a>
-                <a href="#" className="text-[rgba(213,17,42,255)] hover:text-[rgba(193,15,38,255)]">
-                  <Instagram className="w-6 h-6" />
-                </a>
+          {/* Newsletter Section */}
+          <div className="max-w-4xl mx-auto mb-16 bg-white rounded-2xl shadow-xl p-8 transform -translate-y-12 border border-gray-100">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="md:w-1/2">
+                <h3 className="text-2xl font-bold text-[rgba(32,12,0,255)] mb-2">{t('footer.newsletter')}</h3>
+                <p className="text-[rgba(32,12,0,0.7)] mb-4">{t('footer.newsletterDesc')}</p>
               </div>
-              <div className="space-y-2">
-                <button onClick={() => navigate('/privacy-policy')} className="block text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.privacyPolicy')}</button>
-                <button onClick={() => navigate('/terms-of-service')} className="block text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition">{t('nav.termsOfService')}</button>
+              <div className="md:w-1/2 w-full">
+                <div className="flex flex-col sm:flex-row gap-2 w-full">
+                  <input 
+                    type="email" 
+                    placeholder="Email" 
+                    className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[rgba(213,17,42,0.3)] focus:border-[rgba(213,17,42,255)]"
+                  />
+                  <button className="bg-[rgba(213,17,42,255)] hover:bg-[rgba(193,15,38,255)] text-white font-medium py-3 px-6 rounded-lg transition-colors whitespace-nowrap">
+                    {t('footer.subscribe')}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-200 mt-8 pt-8 text-center">
+          
+          {/* Main Footer Content */}
+          <div className="grid md:grid-cols-5 gap-10">
+            <div className="md:col-span-2">
+              <img src={logo} alt="Memet Kebab" className="w-40 mb-6" />
+              <p className="text-[rgba(32,12,0,0.7)] mb-6 max-w-md">{t('footer.description')}</p>
+              <div className="flex space-x-4 mb-6">
+                <a href="#" className="bg-white p-2 rounded-full shadow-sm text-[rgba(213,17,42,255)] hover:text-white hover:bg-[rgba(213,17,42,255)] transition-all duration-300">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="#" className="bg-white p-2 rounded-full shadow-sm text-[rgba(213,17,42,255)] hover:text-white hover:bg-[rgba(213,17,42,255)] transition-all duration-300">
+                  <Twitter className="w-5 h-5" />
+                </a>
+                <a href="#" className="bg-white p-2 rounded-full shadow-sm text-[rgba(213,17,42,255)] hover:text-white hover:bg-[rgba(213,17,42,255)] transition-all duration-300">
+                  <Instagram className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="font-bold text-lg mb-6 text-[rgba(32,12,0,255)]">{t('footer.company')}</h3>
+              <ul className="space-y-3">
+                <li><button onClick={() => navigate('/about')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition flex items-center"><ArrowRight className="w-4 h-4 mr-2" />{t('footer.about')}</button></li>
+                <li><button onClick={() => navigate('/menu')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition flex items-center"><ArrowRight className="w-4 h-4 mr-2" />{t('nav.menu')}</button></li>
+                <li><button onClick={() => navigate('/locations')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition flex items-center"><ArrowRight className="w-4 h-4 mr-2" />{t('nav.locations')}</button></li>
+                <li><button onClick={() => navigate('/careers')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition flex items-center"><ArrowRight className="w-4 h-4 mr-2" />{t('footer.careers')}</button></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-bold text-lg mb-6 text-[rgba(32,12,0,255)]">{t('footer.legal')}</h3>
+              <ul className="space-y-3">
+                <li><button onClick={() => navigate('/privacy-policy')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition flex items-center"><ArrowRight className="w-4 h-4 mr-2" />{t('footer.privacy')}</button></li>
+                <li><button onClick={() => navigate('/terms-of-service')} className="text-[rgba(32,12,0,0.7)] hover:text-[rgba(213,17,42,255)] transition flex items-center"><ArrowRight className="w-4 h-4 mr-2" />{t('footer.terms')}</button></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-bold text-lg mb-6 text-[rgba(32,12,0,255)]">{t('footer.contact')}</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <MapPin className="w-5 h-5 text-[rgba(213,17,42,255)] mr-3 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-[rgba(32,12,0,0.7)]">{t('footer.address')}</p>
+                    <p className="text-[rgba(32,12,0,0.7)]">{t('footer.city')}</p>
+                  </div>
+                </li>
+                <li className="flex items-center">
+                  <Phone className="w-5 h-5 text-[rgba(213,17,42,255)] mr-3 flex-shrink-0" />
+                  <p className="text-[rgba(32,12,0,0.7)]">{t('footer.phone')}</p>
+                </li>
+                <li className="flex items-center">
+                  <Mail className="w-5 h-5 text-[rgba(213,17,42,255)] mr-3 flex-shrink-0" />
+                  <p className="text-[rgba(32,12,0,0.7)]">{t('footer.email')}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          {/* Copyright */}
+          <div className="border-t border-gray-200 mt-12 pt-8 text-center">
             <p className="text-[rgba(32,12,0,0.7)]">&copy; {new Date().getFullYear()} Memet Kebab. {t('footer.rights')}</p>
           </div>
         </div>
