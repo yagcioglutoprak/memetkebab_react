@@ -22,9 +22,11 @@ const categories = [
 
 const fullMenuItems = [
   {
-    title: 'products.donerDurum.title',
+    title: 'Mega Döner Roll',
+    title_ru: 'Мега Дёнер Ролл',
     price: "€8.99",
-    description: 'products.donerDurum.description',
+    description: 'Classic dürüm with thin lavash bread, juicy döner meat, fresh vegetables, and creamy sauce.',
+    description_ru: 'Классический дюрюм с тонким лавашем, сочным мясом дёнера, свежими овощами и кремовым соусом.',
     image: donerDurum,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'durum',
@@ -33,19 +35,23 @@ const fullMenuItems = [
     isPromo: true
   },
   {
-    title: 'products.donerWithKetchup.title',
-    price: "€9.99",
-    description: 'products.donerWithKetchup.description',
+    title: 'Döner Fun Zestaw',
+    title_ru: 'Дёнер Фан Набор',
+    price: "€12.99",
+    description: 'A flavor-packed set! Tasty döner wrap, crispy fries, nuggets, and a cold drink. Perfect for lunch or a chill evening.',
+    description_ru: 'Набор, полный вкуса! Вкусный дёнер-врап, хрустящий картофель фри, наггетсы и холодный напиток. Идеально для обеда или спокойного вечера.',
     image: donerWithKetchup,
     features: ['product.features.chef'],
-    category: 'doner',
+    category: 'menu',
     rating: 4.8,
     reviews: 246
   },
   {
-    title: 'products.wrap.title',
+    title: 'Wrapster Klasyk',
+    title_ru: 'Рапстер Классик',
     price: "€7.99",
-    description: 'products.wrap.description',
+    description: 'Grilled triangular wrap filled with seasoned meat and fresh vegetables. A classic with a modern twist!',
+    description_ru: 'Обжаренный треугольный врап, наполненный приправленным мясом и свежими овощами. Классика с современным поворотом!',
     image: wrap,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'wrap',
@@ -53,9 +59,11 @@ const fullMenuItems = [
     reviews: 187
   },
   {
-    title: 'products.singleDonerMenu.title',
-    price: "€12.99",
-    description: 'products.singleDonerMenu.description',
+    title: 'Dürüm Solo Menu',
+    title_ru: 'Дюрюм Соло Меню',
+    price: "€10.99",
+    description: 'Simple and satisfying. A döner wrap, fries, and a cold drink. All you need – solo but loaded.',
+    description_ru: 'Просто и сытно. Дёнер-врап, картофель фри и прохладный напиток. Всё, что нужно – соло, но с полной загрузкой.',
     image: singleDonerMenu,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'menu',
@@ -64,9 +72,11 @@ const fullMenuItems = [
     isPromo: true
   },
   {
-    title: 'products.sandvic.title',
+    title: 'Kids Kebab Mix',
+    title_ru: 'Детский Кебаб Микс',
     price: "€6.99",
-    description: 'products.sandvic.description',
+    description: 'Small sandwich with meat, fresh veggies, and our mild sauce. Comes with fries and juice – perfect for little kebab fans!',
+    description_ru: 'Маленький сэндвич с мясом, свежими овощами и нашим нежным соусом. Подается с картофелем фри и соком – идеально для маленьких любителей кебаба!',
     image: sandvic,
     features: ['product.features.traditional'],
     category: 'sandwich',
@@ -74,9 +84,11 @@ const fullMenuItems = [
     reviews: 156
   },
   {
-    title: 'products.menuDurum.title',
+    title: 'Maxi Dürüm Zestaw',
+    title_ru: 'Макси Дюрюм Набор',
     price: "€14.99",
-    description: 'products.menuDurum.description',
+    description: 'For the hungry ones! Two signature dürüms, fries, and a drink – a real feast.',
+    description_ru: 'Для голодных! Два фирменных дюрюма, картофель фри и напиток – настоящий пир.',
     image: menuDurum,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'menu',
@@ -96,7 +108,7 @@ const menuItems = fullMenuItems.reduce<Array<{ category: string; items: typeof f
 }, []);
 
 export default function MenuPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -114,6 +126,15 @@ export default function MenuPage() {
                           menuItems.find(cat => cat.category === selectedCategory)?.items.includes(item);
     return matchesSearch && matchesCategory;
   });
+
+  // Fonction pour obtenir le titre et la description selon la langue
+  const getLocalizedTitle = (item: typeof fullMenuItems[0]) => {
+    return language === 'ru' && item.title_ru ? item.title_ru : item.title;
+  };
+
+  const getLocalizedDescription = (item: typeof fullMenuItems[0]) => {
+    return language === 'ru' && item.description_ru ? item.description_ru : item.description;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 pt-24">
@@ -197,7 +218,7 @@ export default function MenuPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
                 <img
                   src={item.image}
-                  alt={t(item.title)}
+                  alt={getLocalizedTitle(item)}
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
                 {item.isPromo && (
@@ -215,10 +236,10 @@ export default function MenuPage() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-[rgba(32,12,0,255)] group-hover:text-[rgba(213,17,42,255)] transition-colors">
-                  {t(item.title)}
+                  {getLocalizedTitle(item)}
                 </h3>
                 <p className="text-[rgba(32,12,0,0.7)] text-sm mb-4 line-clamp-2">
-                  {t(item.description)}
+                  {getLocalizedDescription(item)}
                 </p>
                 <div className="flex justify-between items-center">
                   <span className="text-xl font-bold text-[rgba(213,17,42,255)]">{item.price}</span>

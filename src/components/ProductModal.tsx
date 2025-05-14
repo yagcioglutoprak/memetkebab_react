@@ -6,8 +6,10 @@ import { useLanguage } from '../contexts/LanguageContext';
 interface ProductModalProps {
   product: {
     title: string;
+    title_ru?: string;
     price: string;
     description: string;
+    description_ru?: string;
     image: string;
     isPromo?: boolean;
   } | null;
@@ -15,7 +17,7 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ product, onClose }: ProductModalProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
@@ -31,6 +33,15 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
     { icon: <ThumbsUp className="w-5 h-5 text-[rgba(213,17,42,255)]" />, text: t('product.features.chef') },
     { icon: <Utensils className="w-5 h-5 text-[rgba(213,17,42,255)]" />, text: t('product.features.traditional') },
   ];
+
+  // Obtenir le titre et la description selon la langue
+  const getLocalizedTitle = () => {
+    return language === 'ru' && product.title_ru ? product.title_ru : product.title;
+  };
+
+  const getLocalizedDescription = () => {
+    return language === 'ru' && product.description_ru ? product.description_ru : product.description;
+  };
 
   return (
     <AnimatePresence>
@@ -60,7 +71,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
             <div className="relative h-64 md:h-full">
               <img
                 src={product.image}
-                alt={product.title}
+                alt={getLocalizedTitle()}
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {product.isPromo && (
@@ -72,14 +83,14 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
             <div className="p-6 md:p-8">
               <div className="flex justify-between items-start mb-4">
-                <h3 className="text-2xl font-bold text-[rgba(32,12,0,255)]">{product.title}</h3>
+                <h3 className="text-2xl font-bold text-[rgba(32,12,0,255)]">{getLocalizedTitle()}</h3>
                 <button className="p-2 hover:bg-[rgba(32,12,0,0.1)] rounded-full transition-colors">
                   <Heart className="w-6 h-6 text-[rgba(213,17,42,255)]" />
                 </button>
               </div>
 
               <p className="text-[rgba(213,17,42,255)] text-xl font-bold mb-4">{product.price}</p>
-              <p className="text-[rgba(32,12,0,0.7)] mb-6">{product.description}</p>
+              <p className="text-[rgba(32,12,0,0.7)] mb-6">{getLocalizedDescription()}</p>
 
               <div className="space-y-4 mb-6">
                 {features.map((feature, index) => (

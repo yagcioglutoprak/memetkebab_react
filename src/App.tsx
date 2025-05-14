@@ -31,6 +31,7 @@ import wrap from './assets/menu_items /wrap.webp';
 import singleDonerMenu from './assets/menu_items /single döner menü .webp';
 import sandvic from './assets/menu_items /sandviç .webp';
 import menuDurum from './assets/menu_items /menu_4_dürüm .webp';
+import studentDiscount from './assets/student_discount.webp';
 
 function Home({ onOrderClick }: { onOrderClick: () => void }) {
   const { t } = useLanguage();
@@ -85,55 +86,50 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
 
   const menuItems = [
     {
-      title: t('products.donerDurum.title'),
+      title: 'Mega Döner Roll',
       price: "€8.99",
-      description: t('products.donerDurum.description'),
+      description: 'Classic dürüm with thin lavash bread, juicy döner meat, fresh vegetables, and creamy sauce.',
       image: donerDurum,
       isPromo: true
     },
     {
-      title: t('products.donerWithKetchup.title'),
-      price: "€9.99",
-      description: t('products.donerWithKetchup.description'),
+      title: 'Döner Fun Zestaw',
+      price: "€12.99",
+      description: 'A flavor-packed set! Tasty döner wrap, crispy fries, nuggets, and a cold drink. Perfect for lunch or a chill evening.',
       image: donerWithKetchup
     },
     {
-      title: t('products.wrap.title'),
+      title:  'Wrapster Klasyk',
       price: "€7.99",
-      description: t('products.wrap.description'),
+      description:  'Grilled triangular wrap filled with seasoned meat and fresh vegetables. A classic with a modern twist!',
       image: wrap
     },
     {
-      title: t('products.singleDonerMenu.title'),
-      price: "€12.99",
-      description: t('products.singleDonerMenu.description'),
+      title:  'Dürüm Solo Menu',
+      price: "€10.99",
+      description: 'Simple and satisfying. A döner wrap, fries, and a cold drink. All you need – solo but loaded.',
       image: singleDonerMenu,
       isPromo: true
     },
     {
-      title: t('products.sandvic.title'),
+      title:'Kids Kebab Mix',
       price: "€6.99",
-      description: t('products.sandvic.description'),
+      description:  'Small sandwich with meat, fresh veggies, and our mild sauce. Comes with fries and juice – perfect for little kebab fans!',
       image: sandvic
     },
     {
-      title: t('products.menuDurum.title'),
+      title: 'Maxi Dürüm Zestaw',
       price: "€14.99",
-      description: t('products.menuDurum.description'),
+      description: 'For the hungry ones! Two signature dürüms, fries, and a drink – a real feast.',
       image: menuDurum
     }
   ];
 
   const promotions = [
     {
-      title: t('promos.familyFeast.title'),
-      description: t('promos.familyFeast.description'),
-      image: "/stock-photo-delicious-turkish-doner-kebabs-in-pita-bread-for-your-background-business-poster-wallpaper-2494294689.jpg"
-    },
-    {
       title: t('promos.studentSpecial.title'),
       description: t('promos.studentSpecial.description'),
-      image: "/Giros High-Res Stock Photo.jpg"
+      image: studentDiscount
     }
   ];
 
@@ -338,7 +334,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                   <Phone className="w-6 h-6 text-[rgba(213,17,42,255)]" />
                   <div>
                     <h3 className="font-semibold text-[rgba(32,12,0,255)]">{t('contact.call')}</h3>
-                    <p className="text-[rgba(32,12,0,0.7)]">+1 (555) 123-4567</p>
+                    <p className="text-[rgba(32,12,0,0.7)]">+48 (608) 514 215</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -352,7 +348,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                   <MapPinned className="w-6 h-6 text-[rgba(213,17,42,255)]" />
                   <div>
                     <h3 className="font-semibold text-[rgba(32,12,0,255)]">{t('contact.visit')}</h3>
-                    <p className="text-[rgba(32,12,0,0.7)]">123 Kebab Street, Warsaw, Poland</p>
+                    <p className="text-[rgba(32,12,0,0.7)]">Księcia Józefa Poniatowskiego 24/1a, 50-326 Wrocław, Polska</p>
                   </div>
                 </div>
               </div>
