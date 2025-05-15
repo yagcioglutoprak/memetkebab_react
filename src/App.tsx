@@ -34,7 +34,7 @@ import menuDurum from './assets/menu_items /menu_4_dürüm .webp';
 import studentDiscount from './assets/student_discount.webp';
 
 function Home({ onOrderClick }: { onOrderClick: () => void }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
@@ -87,40 +87,64 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
   const menuItems = [
     {
       title: 'Mega Döner Roll',
+      title_ru: 'Мега Дёнер Ролл',
+      title_pl: 'Mega Döner Roll',
       price: "€8.99",
       description: 'Classic dürüm with thin lavash bread, juicy döner meat, fresh vegetables, and creamy sauce.',
+      description_ru: 'Классический дюрюм с тонким лавашем, сочным мясом дёнера, свежими овощами и кремовым соусом.',
+      description_pl: 'Klasyczny dürüm z cienkim chlebem lavash, soczystym mięsem döner, świeżymi warzywami i kremowym sosem.',
       image: donerDurum,
       isPromo: true
     },
     {
       title: 'Döner Fun Zestaw',
+      title_ru: 'Дёнер Фан Набор',
+      title_pl: 'Döner Fun Zestaw',
       price: "€12.99",
       description: 'A flavor-packed set! Tasty döner wrap, crispy fries, nuggets, and a cold drink. Perfect for lunch or a chill evening.',
+      description_ru: 'Набор, полный вкуса! Вкусный дёнер-врап, хрустящий картофель фри, наггетсы и холодный напиток. Идеально для обеда или спокойного вечера.',
+      description_pl: 'Zestaw pełen smaku! Smaczny wrap döner, chrupiące frytki, nuggetsy i zimny napój. Idealny na lunch lub relaksujący wieczór.',
       image: donerWithKetchup
     },
     {
       title:  'Wrapster Klasyk',
+      title_ru: 'Рапстер Классик',
+      title_pl: 'Wrapster Klasyk',
       price: "€7.99",
       description:  'Grilled triangular wrap filled with seasoned meat and fresh vegetables. A classic with a modern twist!',
+      description_ru: 'Обжаренный треугольный врап, наполненный приправленным мясом и свежими овощами. Классика с современным поворотом!',
+      description_pl: 'Grillowany trójkątny wrap wypełniony przyprawionym mięsem i świeżymi warzywami. Klasyka w nowoczesnym wydaniu!',
       image: wrap
     },
     {
       title:  'Dürüm Solo Menu',
+      title_ru: 'Дюрюм Соло Меню',
+      title_pl: 'Dürüm Solo Menu',
       price: "€10.99",
       description: 'Simple and satisfying. A döner wrap, fries, and a cold drink. All you need – solo but loaded.',
+      description_ru: 'Просто и сытно. Дёнер-врап, картофель фри и прохладный напиток. Всё, что нужно – соло, но с полной загрузкой.',
+      description_pl: 'Proste i satysfakcjonujące. Wrap döner, frytki i zimny napój. Wszystko, czego potrzebujesz – solo, ale na bogato.',
       image: singleDonerMenu,
       isPromo: true
     },
     {
       title:'Kids Kebab Mix',
+      title_ru: 'Детский Кебаб Микс',
+      title_pl: 'Kids Kebab Mix',
       price: "€6.99",
       description:  'Small sandwich with meat, fresh veggies, and our mild sauce. Comes with fries and juice – perfect for little kebab fans!',
+      description_ru: 'Маленький сэндвич с мясом, свежими овощами и нашим нежным соусом. Подается с картофелем фри и соком – идеально для маленьких любителей кебаба!',
+      description_pl: 'Mała kanapka z mięsem, świeżymi warzywami i naszym łagodnym sosem. Podawana z frytkami i sokiem – idealna dla małych fanów kebaba!',
       image: sandvic
     },
     {
       title: 'Maxi Dürüm Zestaw',
+      title_ru: 'Макси Дюрюм Набор',
+      title_pl: 'Maxi Dürüm Zestaw',
       price: "€14.99",
       description: 'For the hungry ones! Two signature dürüms, fries, and a drink – a real feast.',
+      description_ru: 'Для голодных! Два фирменных дюрюма, картофель фри и напиток – настоящий пир.',
+      description_pl: 'Dla głodomorów! Dwa popisowe dürümy, frytki i napój – prawdziwa uczta.',
       image: menuDurum
     }
   ];
@@ -204,7 +228,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                   <div className="relative h-48 mb-4 rounded-xl overflow-hidden bg-gray-50">
                     <img 
                       src={item.image}
-                      alt={item.title}
+                      alt={language === 'ru' && item.title_ru ? item.title_ru : (language === 'pl' && item.title_pl ? item.title_pl : item.title)}
                       className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                     />
                     {item.isPromo && (
@@ -220,7 +244,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                   <div className="space-y-3">
                     <div className="flex justify-between items-start">
                       <h3 className="text-lg font-semibold text-[rgba(32,12,0,255)] group-hover:text-[rgba(213,17,42,255)] transition-colors">
-                        {item.title}
+                        {language === 'ru' && item.title_ru ? item.title_ru : (language === 'pl' && item.title_pl ? item.title_pl : item.title)}
                       </h3>
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 text-[rgba(213,17,42,255)]" />
@@ -228,7 +252,7 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                       </div>
                     </div>
                     <p className="text-[rgba(32,12,0,0.7)] text-sm line-clamp-2">
-                      {item.description}
+                      {language === 'ru' && item.description_ru ? item.description_ru : (language === 'pl' && item.description_pl ? item.description_pl : item.description)}
                     </p>
                     <div className="flex justify-between items-center pt-2">
                       <span className="text-lg font-bold text-[rgba(32,12,0,255)]">

@@ -24,9 +24,11 @@ const fullMenuItems = [
   {
     title: 'Mega Döner Roll',
     title_ru: 'Мега Дёнер Ролл',
+    title_pl: 'Mega Döner Roll',
     price: "€8.99",
     description: 'Classic dürüm with thin lavash bread, juicy döner meat, fresh vegetables, and creamy sauce.',
     description_ru: 'Классический дюрюм с тонким лавашем, сочным мясом дёнера, свежими овощами и кремовым соусом.',
+    description_pl: 'Klasyczny dürüm z cienkim chlebem lavash, soczystym mięsem döner, świeżymi warzywami i kremowym sosem.',
     image: donerDurum,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'durum',
@@ -37,9 +39,11 @@ const fullMenuItems = [
   {
     title: 'Döner Fun Zestaw',
     title_ru: 'Дёнер Фан Набор',
+    title_pl: 'Döner Fun Zestaw',
     price: "€12.99",
     description: 'A flavor-packed set! Tasty döner wrap, crispy fries, nuggets, and a cold drink. Perfect for lunch or a chill evening.',
     description_ru: 'Набор, полный вкуса! Вкусный дёнер-врап, хрустящий картофель фри, наггетсы и холодный напиток. Идеально для обеда или спокойного вечера.',
+    description_pl: 'Zestaw pełen smaku! Smaczny wrap döner, chrupiące frytki, nuggetsy i zimny napój. Idealny na lunch lub relaksujący wieczór.',
     image: donerWithKetchup,
     features: ['product.features.chef'],
     category: 'menu',
@@ -49,9 +53,11 @@ const fullMenuItems = [
   {
     title: 'Wrapster Klasyk',
     title_ru: 'Рапстер Классик',
+    title_pl: 'Wrapster Klasyk',
     price: "€7.99",
     description: 'Grilled triangular wrap filled with seasoned meat and fresh vegetables. A classic with a modern twist!',
     description_ru: 'Обжаренный треугольный врап, наполненный приправленным мясом и свежими овощами. Классика с современным поворотом!',
+    description_pl: 'Grillowany trójkątny wrap wypełniony przyprawionym mięsem i świeżymi warzywami. Klasyka w nowoczesnym wydaniu!',
     image: wrap,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'wrap',
@@ -61,9 +67,11 @@ const fullMenuItems = [
   {
     title: 'Dürüm Solo Menu',
     title_ru: 'Дюрюм Соло Меню',
+    title_pl: 'Dürüm Solo Menu',
     price: "€10.99",
     description: 'Simple and satisfying. A döner wrap, fries, and a cold drink. All you need – solo but loaded.',
     description_ru: 'Просто и сытно. Дёнер-врап, картофель фри и прохладный напиток. Всё, что нужно – соло, но с полной загрузкой.',
+    description_pl: 'Proste i satysfakcjonujące. Wrap döner, frytki i zimny napój. Wszystko, czego potrzebujesz – solo, ale na bogato.',
     image: singleDonerMenu,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'menu',
@@ -74,9 +82,11 @@ const fullMenuItems = [
   {
     title: 'Kids Kebab Mix',
     title_ru: 'Детский Кебаб Микс',
+    title_pl: 'Kids Kebab Mix',
     price: "€6.99",
     description: 'Small sandwich with meat, fresh veggies, and our mild sauce. Comes with fries and juice – perfect for little kebab fans!',
     description_ru: 'Маленький сэндвич с мясом, свежими овощами и нашим нежным соусом. Подается с картофелем фри и соком – идеально для маленьких любителей кебаба!',
+    description_pl: 'Mała kanapka z mięsem, świeżymi warzywami i naszym łagodnym sosem. Podawana z frytkami i sokiem – idealna dla małych fanów kebaba!',
     image: sandvic,
     features: ['product.features.traditional'],
     category: 'sandwich',
@@ -86,9 +96,11 @@ const fullMenuItems = [
   {
     title: 'Maxi Dürüm Zestaw',
     title_ru: 'Макси Дюрюм Набор',
+    title_pl: 'Maxi Dürüm Zestaw',
     price: "€14.99",
     description: 'For the hungry ones! Two signature dürüms, fries, and a drink – a real feast.',
     description_ru: 'Для голодных! Два фирменных дюрюма, картофель фри и напиток – настоящий пир.',
+    description_pl: 'Dla głodomorów! Dwa popisowe dürümy, frytki i napój – prawdziwa uczta.',
     image: menuDurum,
     features: ['product.features.chef', 'product.features.traditional'],
     category: 'menu',
@@ -129,11 +141,23 @@ export default function MenuPage() {
 
   // Fonction pour obtenir le titre et la description selon la langue
   const getLocalizedTitle = (item: typeof fullMenuItems[0]) => {
-    return language === 'ru' && item.title_ru ? item.title_ru : item.title;
+    if (language === 'ru' && item.title_ru) {
+      return item.title_ru;
+    }
+    if (language === 'pl' && item.title_pl) {
+      return item.title_pl;
+    }
+    return item.title;
   };
 
   const getLocalizedDescription = (item: typeof fullMenuItems[0]) => {
-    return language === 'ru' && item.description_ru ? item.description_ru : item.description;
+    if (language === 'ru' && item.description_ru) {
+      return item.description_ru;
+    }
+    if (language === 'pl' && item.description_pl) {
+      return item.description_pl;
+    }
+    return item.description;
   };
 
   return (
