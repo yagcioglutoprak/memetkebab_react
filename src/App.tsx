@@ -87,64 +87,136 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
   const menuItems = [
     {
       title: 'Mega Döner Roll',
-      title_ru: 'Мега Дёнер Ролл',
+      title_de: 'Mega Döner Roll',
+      title_cs: 'Mega Döner Roll',
+      title_hu: 'Mega Döner Roll',
       title_pl: 'Mega Döner Roll',
+      title_ro: 'Mega Döner Roll',
+      title_ru: 'Мега Дёнер Ролл',
+      title_sl: 'Mega Döner Roll',
+      title_uk: 'Мега Дёнер Рол',
       price: "€8.99",
       description: 'Classic dürüm with thin lavash bread, juicy döner meat, fresh vegetables, and creamy sauce.',
-      description_ru: 'Классический дюрюм с тонким лавашем, сочным мясом дёнера, свежими овощами и кремовым соусом.',
+      description_de: 'Klassischer Dürüm mit dünnem Lavash-Brot, saftigem Döner-Fleisch, frischem Gemüse und cremiger Sauce.',
+      description_cs: 'Klasický dürüm s tenkým lavash chlebem, šťavnatým döner masem, čerstvou zeleninou a krémovou omáčkou.',
+      description_hu: 'Klasszikus dürüm vékony lavash kenyérrel, szaftos döner hússal, friss zöldségekkel és krémes szósszal.',
       description_pl: 'Klasyczny dürüm z cienkim chlebem lavash, soczystym mięsem döner, świeżymi warzywami i kremowym sosem.',
+      description_ro: 'Dürüm clasic cu pâine lavash subțire, carne döner suculentă, legume proaspete și sos cremos.',
+      description_ru: 'Классический дюрюм с тонким лавашем, сочным мясом дёнера, свежими овощами и кремовым соусом.',
+      description_sl: 'Klasični dürüm s tankim lavash kruhom, sočnim döner mesom, svežo zelenjavo in kremasto omako.',
+      description_uk: 'Класичний дюрюм з тонким лавашем, соковитим м\'ясом донера, свіжими овочами та вершковим соусом.',
       image: donerDurum,
       isPromo: true
     },
     {
       title: 'Döner Fun Zestaw',
-      title_ru: 'Дёнер Фан Набор',
+      title_de: 'Döner Fun Set',
+      title_cs: 'Döner Fun Set',
+      title_hu: 'Döner Fun Készlet',
       title_pl: 'Döner Fun Zestaw',
+      title_ro: 'Set Döner Fun',
+      title_ru: 'Дёнер Фан Набор',
+      title_sl: 'Döner Fun Set',
+      title_uk: 'Донер Фан Набір',
       price: "€12.99",
       description: 'A flavor-packed set! Tasty döner wrap, crispy fries, nuggets, and a cold drink. Perfect for lunch or a chill evening.',
-      description_ru: 'Набор, полный вкуса! Вкусный дёнер-врап, хрустящий картофель фри, наггетсы и холодный напиток. Идеально для обеда или спокойного вечера.',
+      description_de: 'Ein geschmackvolles Set! Leckerer Döner-Wrap, knusprige Pommes, Nuggets und ein kaltes Getränk. Perfekt für Mittag oder einen entspannten Abend.',
+      description_cs: 'Sada plná chutí! Chutný döner wrap, křupavé hranolky, nugety a studený nápoj. Ideální na oběd nebo relaxační večer.',
+      description_hu: 'Ízletes készlet! Ízletes döner tekercs, ropogós sültkrumpli, nuggets és hideg ital. Tökéletes ebédre vagy egy kellemes estére.',
       description_pl: 'Zestaw pełen smaku! Smaczny wrap döner, chrupiące frytki, nuggetsy i zimny napój. Idealny na lunch lub relaksujący wieczór.',
+      description_ro: 'Un set plin de savoare! Wrap döner delicios, cartofi prăjiți crocanți, nuggets și o băutură rece. Perfect pentru prânz sau o seară relaxantă.',
+      description_ru: 'Набор, полный вкуса! Вкусный дёнер-врап, хрустящий картофель фри, наггетсы и холодный напиток. Идеально для обеда или спокойного вечера.',
+      description_sl: 'Komplet poln okusov! Okusen döner wrap, hrustljavi pomfri, nugeti in hladna pijača. Popoln za kosilo ali sproščen večer.',
+      description_uk: 'Набір, сповнений смаку! Смачний донер-рап, хрустка картопля фрі, нагетси та холодний напій. Ідеально для обіду або спокійного вечора.',
       image: donerWithKetchup
     },
     {
-      title:  'Wrapster Klasyk',
-      title_ru: 'Рапстер Классик',
+      title: 'Wrapster Klasyk',
+      title_de: 'Wrapster Klassik',
+      title_cs: 'Wrapster Klasik',
+      title_hu: 'Wrapster Klasszikus',
       title_pl: 'Wrapster Klasyk',
+      title_ro: 'Wrapster Clasic',
+      title_ru: 'Рапстер Классик',
+      title_sl: 'Wrapster Klasik',
+      title_uk: 'Рапстер Класик',
       price: "€7.99",
-      description:  'Grilled triangular wrap filled with seasoned meat and fresh vegetables. A classic with a modern twist!',
-      description_ru: 'Обжаренный треугольный врап, наполненный приправленным мясом и свежими овощами. Классика с современным поворотом!',
+      description: 'Grilled triangular wrap filled with seasoned meat and fresh vegetables. A classic with a modern twist!',
+      description_de: 'Gegrillter dreieckiger Wrap gefüllt mit gewürztem Fleisch und frischem Gemüse. Ein Klassiker mit modernem Touch!',
+      description_cs: 'Grilovaný trojúhelníkový wrap plněný kořeněným masem a čerstvou zeleninou. Klasika s moderním nádechem!',
+      description_hu: 'Grillezett háromszög alakú tekercs fűszeres hússal és friss zöldségekkel. Egy klasszikus modern fordulattal!',
       description_pl: 'Grillowany trójkątny wrap wypełniony przyprawionym mięsem i świeżymi warzywami. Klasyka w nowoczesnym wydaniu!',
+      description_ro: 'Wrap triunghiular la grătar umplut cu carne condimentată și legume proaspete. Un clasic cu o notă modernă!',
+      description_ru: 'Обжаренный треугольный врап, наполненный приправленным мясом и свежими овощами. Классика с современным поворотом!',
+      description_sl: 'Pečen trikotni wrap, napolnjen z začinjenim mesom in svežo zelenjavo. Klasika s sodobnim pridihom!',
+      description_uk: 'Смажений трикутний рап, наповнений приправленим м\'ясом та свіжими овочами. Класика з сучасним поворотом!',
       image: wrap
     },
     {
-      title:  'Dürüm Solo Menu',
-      title_ru: 'Дюрюм Соло Меню',
+      title: 'Dürüm Solo Menu',
+      title_de: 'Dürüm Solo Menü',
+      title_cs: 'Dürüm Solo Menu',
+      title_hu: 'Dürüm Solo Menü',
       title_pl: 'Dürüm Solo Menu',
+      title_ro: 'Meniu Dürüm Solo',
+      title_ru: 'Дюрюм Соло Меню',
+      title_sl: 'Dürüm Solo Menu',
+      title_uk: 'Дюрюм Соло Меню',
       price: "€10.99",
       description: 'Simple and satisfying. A döner wrap, fries, and a cold drink. All you need – solo but loaded.',
-      description_ru: 'Просто и сытно. Дёнер-врап, картофель фри и прохладный напиток. Всё, что нужно – соло, но с полной загрузкой.',
+      description_de: 'Einfach und befriedigend. Ein Döner-Wrap, Pommes und ein kaltes Getränk. Alles was du brauchst – solo aber vollgepackt.',
+      description_cs: 'Jednoduché a uspokojivé. Döner wrap, hranolky a studený nápoj. Vše, co potřebujete – solo, ale nabité.',
+      description_hu: 'Egyszerű és kielégítő. Egy döner tekercs, sültkrumpli és hideg ital. Minden, amire szükséged van – szóló, de tele.',
       description_pl: 'Proste i satysfakcjonujące. Wrap döner, frytki i zimny napój. Wszystko, czego potrzebujesz – solo, ale na bogato.',
+      description_ro: 'Simplu și satisfăcător. Un wrap döner, cartofi prăjiți și o băutură rece. Tot ce ai nevoie – solo, dar încărcat.',
+      description_ru: 'Просто и сытно. Дёнер-врап, картофель фри и прохладный напиток. Всё, что нужно – соло, но с полной загрузкой.',
+      description_sl: 'Preprosto in zadovoljivo. Döner wrap, pomfri in hladna pijača. Vse, kar potrebujete – solo, a polno.',
+      description_uk: 'Просто та ситно. Донер-рап, картопля фрі та прохолодний напій. Все, що потрібно – соло, але з повним завантаженням.',
       image: singleDonerMenu,
       isPromo: true
     },
     {
-      title:'Kids Kebab Mix',
-      title_ru: 'Детский Кебаб Микс',
+      title: 'Kids Kebab Mix',
+      title_de: 'Kids Kebab Mix',
+      title_cs: 'Dětský Kebab Mix',
+      title_hu: 'Gyerek Kebab Mix',
       title_pl: 'Kids Kebab Mix',
+      title_ro: 'Mix Kebab pentru Copii',
+      title_ru: 'Детский Кебаб Микс',
+      title_sl: 'Otroški Kebab Mix',
+      title_uk: 'Дитячий Кебаб Мікс',
       price: "€6.99",
-      description:  'Small sandwich with meat, fresh veggies, and our mild sauce. Comes with fries and juice – perfect for little kebab fans!',
-      description_ru: 'Маленький сэндвич с мясом, свежими овощами и нашим нежным соусом. Подается с картофелем фри и соком – идеально для маленьких любителей кебаба!',
+      description: 'Small sandwich with meat, fresh veggies, and our mild sauce. Comes with fries and juice – perfect for little kebab fans!',
+      description_de: 'Kleines Sandwich mit Fleisch, frischem Gemüse und unserer milden Sauce. Mit Pommes und Saft – perfekt für kleine Kebab-Fans!',
+      description_cs: 'Malý sendvič s masem, čerstvou zeleninou a naší jemnou omáčkou. S hranolky a džusem – perfektní pro malé fanoušky kebabu!',
+      description_hu: 'Kis szendvics hússal, friss zöldségekkel és enyhe szósszal. Sültkrumplival és gyümölcslével – tökéletes a kis kebab rajongóknak!',
       description_pl: 'Mała kanapka z mięsem, świeżymi warzywami i naszym łagodnym sosem. Podawana z frytkami i sokiem – idealna dla małych fanów kebaba!',
+      description_ro: 'Sandviș mic cu carne, legume proaspete și sosul nostru blând. Vine cu cartofi prăjiți și suc – perfect pentru micii fani de kebab!',
+      description_ru: 'Маленький сэндвич с мясом, свежими овощами и нашим нежным соусом. Подается с картофелем фри и соком – идеально для маленьких любителей кебаба!',
+      description_sl: 'Majhen sendvič z mesom, svežo zelenjavo in našo blago omako. S pomfri in sokom – popolno za male ljubitelje kebaba!',
+      description_uk: 'Маленький сендвіч з м\'ясом, свіжими овочами та нашим м\'яким соусом. Подається з картоплею фрі та соком – ідеально для маленьких любителів кебаба!',
       image: sandvic
     },
     {
       title: 'Maxi Dürüm Zestaw',
-      title_ru: 'Макси Дюрюм Набор',
+      title_de: 'Maxi Dürüm Set',
+      title_cs: 'Maxi Dürüm Set',
+      title_hu: 'Maxi Dürüm Készlet',
       title_pl: 'Maxi Dürüm Zestaw',
+      title_ro: 'Set Maxi Dürüm',
+      title_ru: 'Макси Дюрюм Набор',
+      title_sl: 'Maxi Dürüm Set',
+      title_uk: 'Максі Дюрюм Набір',
       price: "€14.99",
       description: 'For the hungry ones! Two signature dürüms, fries, and a drink – a real feast.',
-      description_ru: 'Для голодных! Два фирменных дюрюма, картофель фри и напиток – настоящий пир.',
+      description_de: 'Für die Hungrigen! Zwei Signature Dürüms, Pommes und ein Getränk – ein echtes Festmahl.',
+      description_cs: 'Pro hladové! Dva podpisové dürümy, hranolky a nápoj – opravdová hostina.',
+      description_hu: 'Az éhesekért! Két különleges dürüm, sültkrumpli és ital – igazi lakoma.',
       description_pl: 'Dla głodomorów! Dwa popisowe dürümy, frytki i napój – prawdziwa uczta.',
+      description_ro: 'Pentru cei flămânzi! Două dürüm-uri semnătură, cartofi prăjiți și o băutură – o adevărată sărbătoare.',
+      description_ru: 'Для голодных! Два фирменных дюрюма, картофель фри и напиток – настоящий пир.',
+      description_sl: 'Za lačne! Dva podpisni dürüma, pomfri in pijača – prava pojedina.',
+      description_uk: 'Для голодних! Два фірмових дюрюма, картопля фрі та напій – справжнє бенкетування.',
       image: menuDurum
     }
   ];
@@ -244,7 +316,15 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                   <div className="space-y-3">
                     <div className="flex justify-between items-start">
                       <h3 className="text-lg font-semibold text-[rgba(32,12,0,255)] group-hover:text-[rgba(213,17,42,255)] transition-colors">
-                        {language === 'ru' && item.title_ru ? item.title_ru : (language === 'pl' && item.title_pl ? item.title_pl : item.title)}
+                        {language === 'de' ? item.title_de :
+                         language === 'cs' ? item.title_cs :
+                         language === 'hu' ? item.title_hu :
+                         language === 'pl' ? item.title_pl :
+                         language === 'ro' ? item.title_ro :
+                         language === 'ru' ? item.title_ru :
+                         language === 'sl' ? item.title_sl :
+                         language === 'uk' ? item.title_uk :
+                         item.title}
                       </h3>
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 text-[rgba(213,17,42,255)]" />
@@ -252,7 +332,15 @@ function Home({ onOrderClick }: { onOrderClick: () => void }) {
                       </div>
                     </div>
                     <p className="text-[rgba(32,12,0,0.7)] text-sm line-clamp-2">
-                      {language === 'ru' && item.description_ru ? item.description_ru : (language === 'pl' && item.description_pl ? item.description_pl : item.description)}
+                      {language === 'de' ? item.description_de :
+                       language === 'cs' ? item.description_cs :
+                       language === 'hu' ? item.description_hu :
+                       language === 'pl' ? item.description_pl :
+                       language === 'ro' ? item.description_ro :
+                       language === 'ru' ? item.description_ru :
+                       language === 'sl' ? item.description_sl :
+                       language === 'uk' ? item.description_uk :
+                       item.description}
                     </p>
                     <div className="flex justify-between items-center pt-2">
                       <span className="text-lg font-bold text-[rgba(32,12,0,255)]">
